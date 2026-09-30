@@ -5,7 +5,7 @@ namespace BilgiAsistani.Core;
 
 public sealed record Document(
     string DocId, string Title, string Family, string Version, DateOnly EffectiveDate, string Status,
-    string? Supersedes, string FileName)
+    string? Supersedes)
 {
     public const string ActiveStatus = "yururlukte";
     public bool IsActive => Status == ActiveStatus;
@@ -85,8 +85,7 @@ public sealed partial class Corpus
                 Get("effective_date") ?? throw new InvalidDataException($"{docId}: effective_date eksik."),
                 "yyyy-MM-dd", CultureInfo.InvariantCulture),
             Status: Get("status") ?? Document.ActiveStatus,
-            Supersedes: Get("supersedes"),
-            FileName: Path.GetFileName(path));
+            Supersedes: Get("supersedes"));
 
         var sections = SectionHeading().Split(m.Groups[2].Value).Skip(1).Select(block =>
         {

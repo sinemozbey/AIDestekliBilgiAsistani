@@ -4,8 +4,8 @@ namespace BilgiAsistani.Tests;
 
 public class SearchTests
 {
-    private static readonly Corpus Corpus = Corpus.Load(Corpus.ResolveDirectory("data/documents"));
-    private static readonly Bm25Index Index = new(Corpus.Chunks);
+    private static readonly Corpus Corpus = TestData.Corpus;
+    private static readonly Bm25Index Index = TestData.Index;
 
     [Fact]
     public void Corpus_ParsesFrontMatterAndSplitsSections()

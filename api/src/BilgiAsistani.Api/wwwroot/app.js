@@ -85,17 +85,16 @@ async function refreshStatus() {
     const r = await fetch("/health", { cache: "no-store" });
     if (!r.ok) throw new Error();
     const h = await r.json();
-    const llm = typeof h.llm_service === "object" ? h.llm_service : null;
-    const useLlm = h.answer_mode === "llm" || (h.answer_mode === "auto" && llm?.llm_available);
-    if (useLlm && llm?.llm_available) {
+    const llm = h.llm_service;
+    const useLlm = h.answer_mode === "llm" || (h.answer_mode === "auto" && llm.llm_available);
+    if (useLlm && llm.llm_available) {
       box.dataset.state = "llm";
       text.textContent = `${modelName(llm.model)} bağlı`;
       box.title = `${h.documents} doküman, ${h.chunks} bölüm yüklü. Yanıtlar LLM ile üretiliyor.`;
     } else {
       box.dataset.state = "fallback";
       text.textContent = "Yedek mod";
-      const reason = llm?.reason ?? (llm ? null : "LLM servisine ulaşılamıyor");
-      box.title = `LLM kullanılamıyor${reason ? `: ${reason}` : ""}. Yanıtlar doğrudan doküman metninden seçiliyor.`;
+      box.title = `LLM kullanılamıyor${llm.reason ? `: ${llm.reason}` : ""}. Yanıtlar doğrudan doküman metninden seçiliyor.`;
     }
   } catch {
     box.dataset.state = "down";

@@ -4,8 +4,8 @@ namespace BilgiAsistani.Tests;
 
 public class ExtractiveAnswererTests
 {
-    private static readonly Corpus Corpus = Corpus.Load(Corpus.ResolveDirectory("data/documents"));
-    private static readonly Bm25Index Index = new(Corpus.Chunks);
+    private static readonly Corpus Corpus = TestData.Corpus;
+    private static readonly Bm25Index Index = TestData.Index;
 
     private static Hit Top(string query) => Index.Search(query, topK: 1)[0];
 

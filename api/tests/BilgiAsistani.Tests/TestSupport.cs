@@ -27,8 +27,15 @@ public class FakeLlmClient : ILlmClient
     }
 }
 
+/// <summary>Testlerde paylaşılan doküman kümesi ve indeks (bir kez yüklenir).</summary>
+public static class TestData
+{
+    public static readonly Corpus Corpus = Corpus.Load(Corpus.ResolveDirectory("data/documents"));
+    public static readonly Bm25Index Index = new(Corpus.Chunks);
+}
+
 public static class Pipelines
 {
-    public static QaPipeline Create(string mode = "extractive", ILlmClient? llm = null) =>
+    public static QaPipeline Create(string mode = AnswerModes.Extractive, ILlmClient? llm = null) =>
         new(Options.Create(new AssistantOptions { AnswerMode = mode }), llm ?? new FakeLlmClient { Health = null });
 }

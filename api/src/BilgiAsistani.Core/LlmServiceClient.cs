@@ -17,6 +17,8 @@ public class LlmServiceException(string message, Exception? inner = null) : Exce
 public class LlmServiceClient(IHttpClientFactory factory) : ILlmClient
 {
     public const string HttpClientName = "llm-service";
+    // Sağlık kontrolü hızlı olmalı: servis yanıt vermiyorsa istek beklemeden çıkarımsal moda geçilir.
+    private static readonly TimeSpan HealthTimeout = TimeSpan.FromSeconds(3);
 
     public static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web)
     {
@@ -28,10 +30,10 @@ public class LlmServiceClient(IHttpClientFactory factory) : ILlmClient
         try
         {
             using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
-            cts.CancelAfter(TimeSpan.FromSeconds(3));
+            cts.CancelAfter(HealthTimeout);
             return await factory.CreateClient(HttpClientName).GetFromJsonAsync<LlmHealth>("health", Json, cts.Token);
         }
-        catch (Exception e) when (e is HttpRequestException or TaskCanceledException or JsonException && !ct.IsCancellationRequested)
+        catch (Exception e) when ((e is HttpRequestException or TaskCanceledException or JsonException) && !ct.IsCancellationRequested)
         {
             return null;
         }

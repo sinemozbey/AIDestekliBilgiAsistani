@@ -44,7 +44,15 @@ public static partial class TurkishText
         for (var i = 0; i < src.Length; i++)
             span[i] = src[i] switch
             {
-                'ç' => 'c', 'ğ' => 'g', 'ı' => 'i', 'ö' => 'o', 'ş' => 's', 'ü' => 'u', 'â' => 'a', 'î' => 'i', 'û' => 'u',
+                'ç' => 'c',
+                'ğ' => 'g',
+                'ı' => 'i',
+                'ö' => 'o',
+                'ş' => 's',
+                'ü' => 'u',
+                'â' => 'a',
+                'î' => 'i',
+                'û' => 'u',
                 var ch => ch,
             };
     });

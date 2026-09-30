@@ -4,8 +4,8 @@ namespace BilgiAsistani.Tests;
 
 public class VersionResolverTests
 {
-    private static readonly Corpus Corpus = Corpus.Load(Corpus.ResolveDirectory("data/documents"));
-    private static readonly Bm25Index Index = new(Corpus.Chunks);
+    private static readonly Corpus Corpus = TestData.Corpus;
+    private static readonly Bm25Index Index = TestData.Index;
 
     private static (List<Hit> Hits, List<VersionDecision> Decisions) Resolve(string query) =>
         VersionResolver.Resolve(Index.Search(query, topK: 10), query, Index, Corpus.Documents);
@@ -20,8 +20,8 @@ public class VersionResolverTests
     [Fact]
     public void CurrentVersion_PrefersActiveOverNewerSuperseded()
     {
-        var active = new Document("a", "A", "f", "1.0", new DateOnly(2024, 1, 1), "yururlukte", null, "a.md");
-        var newerButRetired = new Document("b", "A", "f", "2.0", new DateOnly(2025, 1, 1), "yururlukten_kalkti", null, "b.md");
+        var active = new Document("a", "A", "f", "1.0", new DateOnly(2024, 1, 1), "yururlukte", null);
+        var newerButRetired = new Document("b", "A", "f", "2.0", new DateOnly(2025, 1, 1), "yururlukten_kalkti", null);
 
         Assert.Equal("a", VersionResolver.CurrentVersion("f", [active, newerButRetired]).DocId);
     }

@@ -1,5 +1,16 @@
 namespace BilgiAsistani.Core;
 
+/// <summary>Yanıt modları: Assistant:AnswerMode ayarının değerleri ve yanıttaki "mode" alanı.</summary>
+public static class AnswerModes
+{
+    /// <summary>LLM servisi kullanılabiliyorsa LLM, değilse çıkarımsal (yalnızca ayar değeri).</summary>
+    public const string Auto = "auto";
+    public const string Llm = "llm";
+    public const string Extractive = "extractive";
+    /// <summary>LLM seçilmişti ama ulaşılamadığı için çıkarımsal yanıt verildi (yalnızca yanıtta görülür).</summary>
+    public const string ExtractiveFallback = "extractive_fallback";
+}
+
 public class AssistantOptions
 {
     public const string Section = "Assistant";
@@ -8,7 +19,7 @@ public class AssistantOptions
     public string DocumentsPath { get; set; } = "data/documents";
 
     /// <summary>auto: LLM servisi hazırsa llm, değilse extractive | llm | extractive</summary>
-    public string AnswerMode { get; set; } = "auto";
+    public string AnswerMode { get; set; } = AnswerModes.Auto;
 
     /// <summary>LLM'e gönderilecek en fazla doküman bölümü sayısı.</summary>
     public int TopK { get; set; } = 5;

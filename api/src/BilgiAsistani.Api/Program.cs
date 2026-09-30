@@ -106,7 +106,7 @@ api.MapPost("/ask", async (AskRequest req, QaPipeline qa, IMemoryCache cache, Ht
 api.MapGet("/search", (string q, QaPipeline qa, int topK = 5) =>
     q.Trim().Length < 2 || topK is < 1 or > 20
         ? Results.ValidationProblem(new Dictionary<string, string[]>
-            { ["q"] = ["Sorgu en az 2 karakter, top_k 1-20 arasında olmalıdır."] })
+        { ["q"] = ["Sorgu en az 2 karakter, topK 1-20 arasında olmalıdır."] })
         : Results.Ok(new SearchResponse(q.Trim(), qa.Search(q.Trim(), topK).Select(SourceRef.From).ToList())))
 .WithName("Search")
 .Produces<SearchResponse>()
@@ -128,7 +128,8 @@ app.MapGet("/health", async (QaPipeline qa, CancellationToken ct) =>
         answer_mode = qa.Options.AnswerMode,
         documents = qa.Corpus.Documents.Count,
         chunks = qa.Corpus.Chunks.Count,
-        llm_service = llm is null ? (object)"ulaşılamıyor" : llm,
+        // Servise ulaşılamasa da alan her zaman aynı yapıdadır; istemci tek bir biçimi ele alır.
+        llm_service = llm ?? new LlmHealth("unreachable", false, "", "LLM servisine ulaşılamıyor"),
     });
 })
 .WithTags("Sistem")

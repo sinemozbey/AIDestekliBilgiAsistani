@@ -20,7 +20,7 @@ public class ApiTests
         };
         var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(b =>
         {
-            b.UseSetting("Assistant:AnswerMode", "llm");
+            b.UseSetting("Assistant:AnswerMode", AnswerModes.Llm);
             b.ConfigureTestServices(s => s.AddSingleton<ILlmClient>(llm));
         });
         return (factory.CreateClient(), llm);
@@ -53,7 +53,7 @@ public class ApiTests
         var v2 = new DocVersionRef("iade-politikasi-v2", "İade ve Değişim Politikası", "2.0", new DateOnly(2025, 3, 1), "yururlukte");
         var kargo = new DocVersionRef("kargo-teslimat", "Kargo ve Teslimat Bilgileri", "1.0", new DateOnly(2024, 2, 12), "yururlukte");
         var response = new AskResponse("soru", true, "yanıt", [], [],
-            [new ContentConflict("iade kargo ücreti", v2, kargo, "daha yeni")], "extractive_fallback", null, [],
+            [new ContentConflict("iade kargo ücreti", v2, kargo, "daha yeni")], AnswerModes.ExtractiveFallback, null, [],
             ["LLM kullanılamadı, çıkarımsal moda geçildi."]);
 
         var notes = AskSummary.From(response).Notes;
@@ -154,6 +154,19 @@ public class ApiTests
         Assert.True(schemas.TryGetProperty("AskSummary", out _));
         var askParams = doc.GetProperty("paths").GetProperty("/api/ask").GetProperty("post").GetProperty("parameters");
         Assert.Contains(askParams.EnumerateArray(), p => p.GetProperty("name").GetString() == "details");
+    }
+
+    [Fact]
+    public async Task Health_WhenLlmServiceUnreachable_StillReturnsObjectWithReason()
+    {
+        var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(b =>
+            b.ConfigureTestServices(s => s.AddSingleton<ILlmClient>(new FakeLlmClient { Health = null })));
+
+        var health = await factory.CreateClient().GetFromJsonAsync<JsonElement>("/health");
+
+        var llm = health.GetProperty("llm_service");
+        Assert.False(llm.GetProperty("llm_available").GetBoolean());
+        Assert.Equal("LLM servisine ulaşılamıyor", llm.GetProperty("reason").GetString());
     }
 
     [Fact]

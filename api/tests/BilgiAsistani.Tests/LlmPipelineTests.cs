@@ -10,7 +10,7 @@ public class LlmPipelineTests
     public async Task SupersededVersions_AreNeverSentToLlm()
     {
         var llm = new FakeLlmClient();
-        await Pipelines.Create("llm", llm).AskAsync(Question);
+        await Pipelines.Create(AnswerModes.Llm, llm).AskAsync(Question);
 
         var sent = Assert.Single(llm.Requests).Sources;
         Assert.DoesNotContain(sent, s => s.Id.StartsWith("iade-politikasi-v1"));
@@ -29,9 +29,9 @@ public class LlmPipelineTests
                 "fake-model"),
         };
 
-        var r = await Pipelines.Create("llm", llm).AskAsync(Question);
+        var r = await Pipelines.Create(AnswerModes.Llm, llm).AskAsync(Question);
 
-        Assert.Equal("llm", r.Mode);
+        Assert.Equal(AnswerModes.Llm, r.Mode);
         Assert.Equal(["iade-politikasi-v2#3"], r.Sources.Select(s => s.ChunkId));
         var conflict = Assert.Single(r.ContentConflicts);
         Assert.Equal(new DateOnly(2025, 3, 1), conflict.Chosen.EffectiveDate);
@@ -44,7 +44,7 @@ public class LlmPipelineTests
     {
         var llm = new FakeLlmClient { Respond = _ => new GenerateResponse(false, "Bilgi yok.", [], [], "fake-model") };
 
-        var r = await Pipelines.Create("llm", llm).AskAsync("Nova Termo Alexa ile uyumlu mu?");
+        var r = await Pipelines.Create(AnswerModes.Llm, llm).AskAsync("Nova Termo Alexa ile uyumlu mu?");
 
         Assert.False(r.Answerable);
         Assert.Empty(r.Sources);
@@ -55,7 +55,7 @@ public class LlmPipelineTests
     public async Task LowScore_SkipsLlmCall()
     {
         var llm = new FakeLlmClient();
-        var r = await Pipelines.Create("llm", llm).AskAsync("Şirketin CEO'su kim?");
+        var r = await Pipelines.Create(AnswerModes.Llm, llm).AskAsync("Şirketin CEO'su kim?");
 
         Assert.False(r.Answerable);
         Assert.Empty(llm.Requests);
@@ -66,9 +66,9 @@ public class LlmPipelineTests
     {
         var llm = new FakeLlmClient { Respond = _ => throw new LlmServiceException("LLM servisine bağlanılamadı.") };
 
-        var r = await Pipelines.Create("llm", llm).AskAsync("Garanti süresi ne kadar?");
+        var r = await Pipelines.Create(AnswerModes.Llm, llm).AskAsync("Garanti süresi ne kadar?");
 
-        Assert.Equal("extractive_fallback", r.Mode);
+        Assert.Equal(AnswerModes.ExtractiveFallback, r.Mode);
         Assert.True(r.Answerable);
         Assert.Contains("LLM servisine bağlanılamadı", Assert.Single(r.Warnings));
     }
@@ -78,7 +78,7 @@ public class LlmPipelineTests
     {
         // "Canlı Sohbet: 7 gün 24 saat" bölümü aramada ilk 5'e girmiyor; doküman genişletmesiyle LLM'e ulaşmalı.
         var llm = new FakeLlmClient();
-        await Pipelines.Create("llm", llm).AskAsync("Pazar günü destek alabilir miyim?");
+        await Pipelines.Create(AnswerModes.Llm, llm).AskAsync("Pazar günü destek alabilir miyim?");
 
         var sent = Assert.Single(llm.Requests).Sources.Select(s => s.Id).ToList();
         Assert.Contains("destek-kanallari-v2#3", sent);
@@ -89,7 +89,7 @@ public class LlmPipelineTests
     [Fact]
     public void LlmContext_ExpandsAtMostConfiguredNumberOfDocuments()
     {
-        var pipeline = Pipelines.Create("llm");
+        var pipeline = Pipelines.Create(AnswerModes.Llm);
         var question = "Ürün iadesinde kargo ücretini kim ödüyor?";
         var hits = VersionResolver.Resolve(pipeline.Index.Search(question, 10), question, pipeline.Index, pipeline.Corpus.Documents)
             .Hits.Take(5).ToList();
@@ -111,7 +111,7 @@ public class LlmPipelineTests
     public void LlmContext_ExpansionDisabled_SendsOnlyTopHits()
     {
         var pipeline = new QaPipeline(
-            Microsoft.Extensions.Options.Options.Create(new AssistantOptions { AnswerMode = "llm", ExpandedDocuments = 0 }),
+            Microsoft.Extensions.Options.Options.Create(new AssistantOptions { AnswerMode = AnswerModes.Llm, ExpandedDocuments = 0 }),
             new FakeLlmClient());
         var hits = pipeline.Index.Search("garanti süresi", 3);
 
@@ -122,7 +122,7 @@ public class LlmPipelineTests
     public async Task AutoMode_CachesLlmServiceHealth_AcrossRequests()
     {
         var llm = new FakeLlmClient();
-        var pipeline = Pipelines.Create("auto", llm);
+        var pipeline = Pipelines.Create(AnswerModes.Auto, llm);
 
         await Task.WhenAll(Enumerable.Range(0, 5).Select(_ => pipeline.GetLlmHealthAsync(CancellationToken.None)));
         await pipeline.AskAsync("Garanti süresi ne kadar?");
@@ -136,13 +136,13 @@ public class LlmPipelineTests
     }
 
     [Theory]
-    [InlineData(true, "llm")]
-    [InlineData(false, "extractive")]
+    [InlineData(true, AnswerModes.Llm)]
+    [InlineData(false, AnswerModes.Extractive)]
     public async Task AutoMode_FollowsLlmServiceHealth(bool available, string expectedMode)
     {
         var llm = new FakeLlmClient { Health = new LlmHealth("ok", available, "fake-model") };
 
-        var r = await Pipelines.Create("auto", llm).AskAsync("Garanti süresi ne kadar?");
+        var r = await Pipelines.Create(AnswerModes.Auto, llm).AskAsync("Garanti süresi ne kadar?");
 
         Assert.Equal(expectedMode, r.Mode);
         Assert.Empty(r.Warnings);

@@ -50,15 +50,15 @@ public class QaPipeline
 
     private async Task<bool> UseLlmAsync(CancellationToken ct) => _opts.AnswerMode.ToLowerInvariant() switch
     {
-        "extractive" => false,
-        "llm" => true,
+        AnswerModes.Extractive => false,
+        AnswerModes.Llm => true,
         _ => (await GetLlmHealthAsync(ct))?.LlmAvailable ?? false,
     };
 
     public async Task<AskResponse> AskAsync(string question, CancellationToken ct = default)
     {
         var useLlm = await UseLlmAsync(ct);
-        var mode = useLlm ? "llm" : "extractive";
+        var mode = useLlm ? AnswerModes.Llm : AnswerModes.Extractive;
 
         // Sürüm çözümlemesinde eski bölümler elenebileceği için fazladan aday alınır.
         var rawHits = Index.Search(question, _opts.TopK * 2);
@@ -86,7 +86,7 @@ public class QaPipeline
             {
                 _log.LogWarning(e, "LLM kullanılamadı, çıkarımsal moda geçiliyor");
                 warnings.Add($"LLM kullanılamadı, çıkarımsal moda geçildi: {e.Message}");
-                mode = "extractive_fallback";
+                mode = AnswerModes.ExtractiveFallback;
             }
         }
 
@@ -154,6 +154,6 @@ public class QaPipeline
             // Yalnızca yanıtta kullanılan aileye ait sürüm kararları gösterilir.
             answerable ? decisions.Where(d => usedFamilies.Contains(d.Family)).ToList() : [],
             answerable ? conflicts : [],
-            "llm", result.Model, candidates, []);
+            AnswerModes.Llm, result.Model, candidates, []);
     }
 }
