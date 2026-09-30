@@ -1,0 +1,34 @@
+# Değerler depo kökündeki .env dosyasından okunur (Compose bunu kendiliğinden yapar).
+# Her servis yalnızca ihtiyaç duyduğu değişkenleri alır: API anahtarını yalnızca llm-service görür.
+services:
+  llm-service:
+    build: ./llm-service
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-opus-5-5}
+      LLM_EFFORT: ${LLM_EFFORT:-low}
+    ports:
+      - "8100:8100"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8100/health')"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    environment:
+      Assistant__AnswerMode: ${Assistant__AnswerMode:-auto}
+      Assistant__TopK: ${Assistant__TopK:-5}
+      Assistant__MinScore: ${Assistant__MinScore:-3.0}
+      Assistant__MinCoverage: ${Assistant__MinCoverage:-0.6}
+      Assistant__ExpandedDocuments: ${Assistant__ExpandedDocuments:-2}
+      LlmService__BaseUrl: http://llm-service:8100
+      LlmService__TimeoutSeconds: ${LlmService__TimeoutSeconds:-120}
+      AnswerCacheMinutes: ${AnswerCacheMinutes:-10}
+    ports:
+      - "5080:8080"
+    depends_on:
+      llm-service:
+        condition: service_healthy
