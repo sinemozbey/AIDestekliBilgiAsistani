@@ -74,6 +74,51 @@ public class LlmPipelineTests
     }
 
     [Fact]
+    public async Task LlmContext_IncludesWholeCurrentDocument_WhenSearchMissesRelevantSection()
+    {
+        // "Canlı Sohbet: 7 gün 24 saat" bölümü aramada ilk 5'e girmiyor; doküman genişletmesiyle LLM'e ulaşmalı.
+        var llm = new FakeLlmClient();
+        await Pipelines.Create("llm", llm).AskAsync("Pazar günü destek alabilir miyim?");
+
+        var sent = Assert.Single(llm.Requests).Sources.Select(s => s.Id).ToList();
+        Assert.Contains("destek-kanallari-v2#3", sent);
+        Assert.DoesNotContain(sent, id => id.StartsWith("destek-kanallari-v1"));
+        Assert.Equal(sent.Count, sent.Distinct().Count());
+    }
+
+    [Fact]
+    public void LlmContext_ExpandsAtMostConfiguredNumberOfDocuments()
+    {
+        var pipeline = Pipelines.Create("llm");
+        var question = "Ürün iadesinde kargo ücretini kim ödüyor?";
+        var hits = VersionResolver.Resolve(pipeline.Index.Search(question, 10), question, pipeline.Index, pipeline.Corpus.Documents)
+            .Hits.Take(5).ToList();
+
+        var context = pipeline.BuildLlmContext(question, hits);
+
+        var firstTwoDocs = hits.Select(h => h.Chunk.Doc.DocId).Distinct().Take(2).ToList();
+        foreach (var docId in firstTwoDocs)
+            Assert.Equal(
+                pipeline.Corpus.Chunks.Where(c => c.Doc.DocId == docId).Select(c => c.ChunkId),
+                context.Where(h => h.Chunk.Doc.DocId == docId).Select(h => h.Chunk.ChunkId));
+        // İlk iki doküman dışındakilerden yalnızca aramada öne çıkan bölümler gelir.
+        Assert.All(context.Where(h => !firstTwoDocs.Contains(h.Chunk.Doc.DocId)), h => Assert.Contains(h, hits));
+        Assert.All(context, h => Assert.True(h.Chunk.Doc.IsActive));
+        Assert.True(context.Count <= 20);
+    }
+
+    [Fact]
+    public void LlmContext_ExpansionDisabled_SendsOnlyTopHits()
+    {
+        var pipeline = new QaPipeline(
+            Microsoft.Extensions.Options.Options.Create(new AssistantOptions { AnswerMode = "llm", ExpandedDocuments = 0 }),
+            new FakeLlmClient());
+        var hits = pipeline.Index.Search("garanti süresi", 3);
+
+        Assert.Same(hits, pipeline.BuildLlmContext("garanti süresi", hits));
+    }
+
+    [Fact]
     public async Task AutoMode_CachesLlmServiceHealth_AcrossRequests()
     {
         var llm = new FakeLlmClient();

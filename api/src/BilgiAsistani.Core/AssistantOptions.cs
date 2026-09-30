@@ -18,6 +18,12 @@ public class AssistantOptions
 
     /// <summary>Çıkarımsal modda soru terimlerinin en iyi bölümde bulunması gereken en düşük oran.</summary>
     public double MinCoverage { get; set; } = 0.6;
+
+    /// <summary>
+    /// LLM'e tüm bölümleriyle gönderilecek en fazla doküman sayısı (en iyi eşleşenlerden). Yanıtın bir kısmı
+    /// dokümanın aramada öne çıkmayan bir bölümündeyse LLM onu da görür. 0: yalnızca en iyi TopK bölüm gönderilir.
+    /// </summary>
+    public int ExpandedDocuments { get; set; } = 2;
 }
 
 public class LlmServiceOptions

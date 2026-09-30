@@ -14,7 +14,9 @@ public class ApiTests
     {
         var llm = new FakeLlmClient
         {
-            Respond = req => new GenerateResponse(true, "30 gün içinde iade edebilirsiniz.", [req.Sources[0].Id], [], "fake-model"),
+            // LLM'e bölümler doküman sırasıyla gider; sahte yanıt, iade süresi sorusunun dayandığı bölümü seçer.
+            Respond = req => new GenerateResponse(true, "30 gün içinde iade edebilirsiniz.",
+                [(req.Sources.FirstOrDefault(s => s.Section == "İade Süresi") ?? req.Sources[0]).Id], [], "fake-model"),
         };
         var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(b =>
         {

@@ -80,7 +80,7 @@ public class QaPipeline
         {
             try
             {
-                return await AskLlmAsync(question, hits, decisions, candidates, ct);
+                return await AskLlmAsync(question, BuildLlmContext(question, hits), decisions, candidates, ct);
             }
             catch (LlmServiceException e)
             {
@@ -99,8 +99,34 @@ public class QaPipeline
             [], mode, null, candidates, warnings);
     }
 
+    /// <summary>
+    /// LLM'e gönderilecek bağlam: en iyi eşleşen (en fazla ExpandedDocuments adet) dokümanın tüm bölümleri,
+    /// doküman içindeki sırasıyla; ardından diğer dokümanlardan gelen en iyi bölümler. Arama doğru dokümanı
+    /// bulup yanıtın bir kısmını içeren bölümü öne çıkaramadığında (ör. "pazar günü destek" sorusunda
+    /// "Canlı Sohbet: 7 gün 24 saat" bölümü) LLM bu bölümü de görür. Hits yalnızca güncel sürümleri
+    /// içerdiğinden genişletme de yalnızca güncel sürümlere uygulanır.
+    /// </summary>
+    public IReadOnlyList<Hit> BuildLlmContext(string question, IReadOnlyList<Hit> hits)
+    {
+        const int maxSources = 20; // LLM servisinin kabul ettiği en fazla kaynak sayısı
+        if (_opts.ExpandedDocuments <= 0) return hits;
+
+        var expanded = hits.Select(h => h.Chunk.Doc.DocId).Distinct().Take(_opts.ExpandedDocuments).ToHashSet();
+        // Bölümün skoru: sürüm çözümlemesinden gelen skor, yoksa ham arama skoru, o da yoksa 0 (yalnızca genişletmeyle eklendi).
+        var scores = Index.Search(question, Corpus.Chunks.Count).ToDictionary(h => h.Chunk.ChunkId);
+        foreach (var h in hits) scores[h.Chunk.ChunkId] = h;
+
+        return hits.Select(h => h.Chunk.Doc.DocId).Distinct()
+            .SelectMany(docId => expanded.Contains(docId)
+                ? Corpus.Chunks.Where(c => c.Doc.DocId == docId)
+                    .Select(c => scores.GetValueOrDefault(c.ChunkId) ?? new Hit(c, 0, new HashSet<string>()))
+                : hits.Where(h => h.Chunk.Doc.DocId == docId))
+            .Take(maxSources)
+            .ToList();
+    }
+
     private async Task<AskResponse> AskLlmAsync(
-        string question, List<Hit> hits, List<VersionDecision> decisions, List<Candidate> candidates, CancellationToken ct)
+        string question, IReadOnlyList<Hit> hits, List<VersionDecision> decisions, List<Candidate> candidates, CancellationToken ct)
     {
         var request = new GenerateRequest(question, hits.Select(h => new LlmSource(
             h.Chunk.ChunkId, h.Chunk.Doc.Title, h.Chunk.Doc.Version, h.Chunk.Doc.EffectiveDate, h.Chunk.Doc.Status,
