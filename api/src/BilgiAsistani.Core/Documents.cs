@@ -9,6 +9,8 @@ public sealed record Document(
 {
     public const string ActiveStatus = "yururlukte";
     public bool IsActive => Status == ActiveStatus;
+
+    public DocVersionRef ToRef() => new(DocId, Title, Version, EffectiveDate, Status);
 }
 
 public sealed class Chunk(string chunkId, Document doc, string section, string text)
