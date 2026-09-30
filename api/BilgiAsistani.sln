@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BilgiAsistani.Api", "src\BilgiAsistani.Api\BilgiAsistani.Api.csproj", "{50A16890-70C5-43BC-8ACA-C6F4EC46762F}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BilgiAsistani.Core", "src\BilgiAsistani.Core\BilgiAsistani.Core.csproj", "{6D719CCE-B817-46A3-9511-2032570B28A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
@@ -21,6 +23,18 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Debug|x64.Build.0 = Debug|Any CPU
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Debug|x86.Build.0 = Debug|Any CPU
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Release|x64.ActiveCfg = Release|Any CPU
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Release|x64.Build.0 = Release|Any CPU
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Release|x86.ActiveCfg = Release|Any CPU
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F}.Release|x86.Build.0 = Release|Any CPU
 		{6D719CCE-B817-46A3-9511-2032570B28A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6D719CCE-B817-46A3-9511-2032570B28A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D719CCE-B817-46A3-9511-2032570B28A8}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -50,6 +64,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{50A16890-70C5-43BC-8ACA-C6F4EC46762F} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{6D719CCE-B817-46A3-9511-2032570B28A8} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{8E047D2E-D8CF-4518-BF03-847CFC8A1F2A} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 	EndGlobalSection
