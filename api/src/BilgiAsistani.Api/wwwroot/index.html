@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nova Destek Asistanı</title>
+  <meta name="description" content="Nova Ev Teknolojileri destek ekibi için doküman tabanlı Türkçe bilgi asistanı.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Cpath d='M10 22V10h2.6l6.8 8.2V10H22v12h-2.6l-6.8-8.2V22z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="app.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/" aria-label="Nova Destek Asistanı ana sayfa">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="8" />
+          <path d="M10 22V10h2.6l6.8 8.2V10H22v12h-2.6l-6.8-8.2V22z" />
+        </svg>
+        <span class="brand-name">Nova Destek Asistanı</span>
+      </a>
+
+      <nav class="tabs" role="tablist" aria-label="Bölümler">
+        <button class="tab" role="tab" id="tab-btn-ask" aria-controls="tab-ask" aria-selected="true">Soru sor</button>
+        <button class="tab" role="tab" id="tab-btn-docs" aria-controls="tab-docs" aria-selected="false" tabindex="-1">Bilgi tabanı</button>
+      </nav>
+
+      <div class="topbar-right">
+        <span id="status" class="status" data-state="loading" role="status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span class="status-text">Bağlanıyor…</span>
+        </span>
+        <a class="api-link" href="/scalar/" target="_blank" rel="noopener" title="API dokümantasyonu (yeni sekmede açılır)">
+          API
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3h6v6" /><path d="M10 14 21 3" /><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="tab-ask" role="tabpanel" aria-labelledby="tab-btn-ask">
+      <div class="page-head">
+        <h1>Soru sor</h1>
+        <p>Yanıtlar yalnızca Nova Ev Teknolojileri dokümanlarından üretilir.</p>
+      </div>
+
+      <form id="ask-form" class="composer" autocomplete="off">
+        <label for="question" class="visually-hidden">Müşterinin sorusu</label>
+        <textarea id="question" name="question" rows="2" maxlength="1000"
+                  placeholder="Müşterinin sorusunu yazın…"></textarea>
+        <div class="composer-bar">
+          <span class="hint"><kbd>Enter</kbd> gönder · <kbd>Shift</kbd> + <kbd>Enter</kbd> yeni satır</span>
+          <button id="ask-btn" class="btn-primary" type="submit">
+            <span class="btn-label">Sor</span>
+            <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+        </div>
+      </form>
+
+      <div id="result" aria-live="polite">
+        <ul class="features" aria-label="Asistanın çalışma ilkeleri">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6" /><path d="M16 13H8" /><path d="M16 17H8" /></svg>
+            <div><strong>Kaynaklı yanıt</strong><span>Her yanıt, dayandığı doküman bölümüyle birlikte gösterilir.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /><path d="M12 7v5l4 2" /></svg>
+            <div><strong>Güncel sürüm</strong><span>Bir prosedürün birden fazla sürümü varsa yürürlükteki kullanılır.</span></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>
+            <div><strong>Bilgi yoksa söyler</strong><span>Dokümanlarda olmayan bilgi üretilmez; eksik olduğu açıkça belirtilir.</span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="tab-docs" role="tabpanel" aria-labelledby="tab-btn-docs" hidden>
+      <div class="page-head">
+        <h1>Bilgi tabanı</h1>
+        <p>Asistanın kullandığı dokümanlar. Bir prosedürün birden fazla sürümü varsa yalnızca yürürlükteki sürüm yanıtlarda kullanılır.</p>
+      </div>
+      <div id="docs" class="docs"></div>
+    </section>
+  </main>
+
+  <footer class="footer">Nova Ev Teknolojileri · Kurgu dokümanlarla hazırlanmış örnek proje</footer>
+</body>
+</html>

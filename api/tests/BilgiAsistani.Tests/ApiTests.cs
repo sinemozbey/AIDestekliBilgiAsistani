@@ -120,18 +120,24 @@ public class ApiTests
     }
 
     [Fact]
-    public async Task Root_RedirectsToScalarUi_WhichServesHtml()
+    public async Task Root_ServesWebUi_AndScalarServesApiReference()
     {
-        var factory = new WebApplicationFactory<Program>();
-        var client = factory.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
+        var client = new WebApplicationFactory<Program>().CreateClient();
 
         var root = await client.GetAsync("/");
-        var ui = await client.GetAsync("/scalar/");
+        var script = await client.GetAsync("/app.js");
+        var scalar = await client.GetAsync("/scalar/");
 
-        Assert.Equal(HttpStatusCode.Redirect, root.StatusCode);
-        Assert.Equal("/scalar/", root.Headers.Location?.ToString());
-        ui.EnsureSuccessStatusCode();
-        Assert.Equal("text/html", ui.Content.Headers.ContentType?.MediaType);
+        root.EnsureSuccessStatusCode();
+        Assert.Equal("text/html", root.Content.Headers.ContentType?.MediaType);
+        Assert.Contains("<title>Nova Destek Asistanı</title>", await root.Content.ReadAsStringAsync());
+        script.EnsureSuccessStatusCode();
+        // Arayüz, API metinlerini HTML olarak değil düz metin olarak yazar.
+        var js = await script.Content.ReadAsStringAsync();
+        Assert.DoesNotContain(".innerHTML", js);
+        Assert.DoesNotContain("insertAdjacentHTML", js);
+        scalar.EnsureSuccessStatusCode();
+        Assert.Equal("text/html", scalar.Content.Headers.ContentType?.MediaType);
     }
 
     [Fact]

@@ -44,10 +44,12 @@ builder.Services.AddOpenApi(o =>
 var app = builder.Build();
 
 app.UseExceptionHandler();
+// Web arayüzü (wwwroot/index.html) ana adreste yayınlanır.
+app.UseDefaultFiles();
+app.UseStaticFiles();
 app.MapOpenApi();
-// Tarayıcıdan denenebilir API arayüzü: /scalar. Ana adres de arayüze yönlendirilir.
+// Geliştiriciler için tarayıcıdan denenebilir API arayüzü: /scalar/
 app.MapScalarApiReference(o => o.WithTitle("Bilgi Asistanı API"));
-app.MapGet("/", () => Results.Redirect("/scalar/")).ExcludeFromDescription();
 
 // İndeksi ilk istekte değil, açılışta kur; doküman hataları hemen görünsün.
 var pipeline = app.Services.GetRequiredService<QaPipeline>();
