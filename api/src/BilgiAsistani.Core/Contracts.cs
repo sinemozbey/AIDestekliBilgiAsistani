@@ -80,4 +80,5 @@ public record LlmConflict(string Topic, string ChosenSourceId, string RejectedSo
 public record GenerateResponse(
     bool Answerable, string Answer, IReadOnlyList<string> UsedSourceIds, IReadOnlyList<LlmConflict> Conflicts, string Model);
 
-public record LlmHealth(string Status, bool LlmAvailable, string Model);
+/// <summary>LLM servisinin durumu; kullanılamıyorsa Reason nedeni söyler (ör. anahtar tanımlı değil ya da geçersiz).</summary>
+public record LlmHealth(string Status, bool LlmAvailable, string Model, string? Reason = null);

@@ -94,7 +94,8 @@ async function refreshStatus() {
     } else {
       box.dataset.state = "fallback";
       text.textContent = "Yedek mod";
-      box.title = "LLM kullanılamıyor; yanıtlar doğrudan doküman metninden seçiliyor.";
+      const reason = llm?.reason ?? (llm ? null : "LLM servisine ulaşılamıyor");
+      box.title = `LLM kullanılamıyor${reason ? `: ${reason}` : ""}. Yanıtlar doğrudan doküman metninden seçiliyor.`;
     }
   } catch {
     box.dataset.state = "down";

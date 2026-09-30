@@ -95,6 +95,18 @@ public class LlmServiceClientTests
     }
 
     [Fact]
+    public async Task Health_ParsesUnavailabilityReason()
+    {
+        var (client, _) = Create(_ => Json(
+            """{"status": "ok", "llm_available": false, "model": "claude-opus-5-5", "reason": "ANTHROPIC_API_KEY geçersiz"}"""));
+
+        var health = await client.GetHealthAsync(CancellationToken.None);
+
+        Assert.False(health!.LlmAvailable);
+        Assert.Equal("ANTHROPIC_API_KEY geçersiz", health.Reason);
+    }
+
+    [Fact]
     public async Task Health_ParsesAvailability_AndReturnsNullWhenUnreachable()
     {
         var (up, _) = Create(_ => Json("""{"status": "ok", "llm_available": true, "model": "claude-opus-5-5"}"""));

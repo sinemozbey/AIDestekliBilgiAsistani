@@ -43,7 +43,10 @@ class LLMAnswer(BaseModel):
 
 
 class LLMError(RuntimeError):
-    pass
+    def __init__(self, message: str, transient: bool = False):
+        super().__init__(message)
+        # Geçici hatalar (bağlantı, hız sınırı, sunucu hatası) kısa süre sonra kendiliğinden düzelebilir.
+        self.transient = transient
 
 
 def format_sources(sources: list[Source]) -> str:
@@ -60,6 +63,23 @@ class ClaudeAnswerer:
         self.model = model
         self.effort = effort
         self.client = anthropic.Anthropic()
+
+    def verify(self) -> None:
+        """Anahtarın geçerli olduğunu ve modele erişilebildiğini doğrular (ücretsiz Models API çağrısı)."""
+        try:
+            self.client.models.retrieve(self.model)
+        except anthropic.AuthenticationError as e:
+            raise LLMError("ANTHROPIC_API_KEY geçersiz (Anthropic anahtarı olduğundan emin olun)") from e
+        except anthropic.PermissionDeniedError as e:
+            raise LLMError(f"API anahtarının {self.model} modeline erişim izni yok") from e
+        except anthropic.NotFoundError as e:
+            raise LLMError(f"Model bulunamadı: {self.model}") from e
+        except anthropic.RateLimitError as e:
+            raise LLMError("Anthropic API hız sınırına ulaşıldı", transient=True) from e
+        except anthropic.APIConnectionError as e:
+            raise LLMError("Anthropic API'ye bağlanılamadı", transient=True) from e
+        except anthropic.APIStatusError as e:
+            raise LLMError(f"Anthropic API hatası ({e.status_code})", transient=e.status_code >= 500) from e
 
     def answer(self, question: str, sources: list[Source]) -> LLMAnswer:
         user = f"<sources>\n{format_sources(sources)}\n</sources>\n\n<question>{escape(question)}</question>"
