@@ -11,7 +11,14 @@ public class FakeLlmClient : ILlmClient
         req => new GenerateResponse(true, "yanıt", [req.Sources[0].Id], [], "fake-model");
     public List<GenerateRequest> Requests { get; } = [];
 
-    public Task<LlmHealth?> GetHealthAsync(CancellationToken ct) => Task.FromResult(Health);
+    private int _healthChecks;
+    public int HealthChecks => _healthChecks;
+
+    public Task<LlmHealth?> GetHealthAsync(CancellationToken ct)
+    {
+        Interlocked.Increment(ref _healthChecks);
+        return Task.FromResult(Health);
+    }
 
     public Task<GenerateResponse> GenerateAsync(GenerateRequest request, CancellationToken ct)
     {

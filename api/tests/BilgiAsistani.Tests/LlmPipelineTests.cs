@@ -73,6 +73,23 @@ public class LlmPipelineTests
         Assert.Contains("LLM servisine bağlanılamadı", Assert.Single(r.Warnings));
     }
 
+    [Fact]
+    public async Task AutoMode_CachesLlmServiceHealth_AcrossRequests()
+    {
+        var llm = new FakeLlmClient();
+        var pipeline = Pipelines.Create("auto", llm);
+
+        await Task.WhenAll(Enumerable.Range(0, 5).Select(_ => pipeline.GetLlmHealthAsync(CancellationToken.None)));
+        await pipeline.AskAsync("Garanti süresi ne kadar?");
+        await pipeline.AskAsync("Canlı sohbet desteğiniz var mı?");
+
+        // İlk eşzamanlı çağrılar birden fazla kontrol yapabilir; önbellek dolduktan sonra servise tekrar gidilmez.
+        var afterWarmup = llm.HealthChecks;
+        await pipeline.AskAsync("Para iadesi kaç iş gününde yapılır?");
+        Assert.InRange(afterWarmup, 1, 5);
+        Assert.Equal(afterWarmup, llm.HealthChecks);
+    }
+
     [Theory]
     [InlineData(true, "llm")]
     [InlineData(false, "extractive")]

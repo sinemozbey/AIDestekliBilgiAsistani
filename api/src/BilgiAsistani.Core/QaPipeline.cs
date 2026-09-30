@@ -13,7 +13,10 @@ public class QaPipeline
     private readonly AssistantOptions _opts;
     private readonly ILlmClient _llm;
     private readonly ILogger<QaPipeline> _log;
-    private (DateTime CheckedAt, LlmHealth? Health)? _healthCache;
+    // Sağlık durumu tek bir değiştirilemez nesnede tutulur. Referans ataması atomik olduğu için eşzamanlı
+    // istekler zamanı bir kayıttan, durumu başka bir kayıttan okuyamaz (iki alanlı bir struct'ta bu mümkündü).
+    private sealed record HealthSnapshot(DateTime CheckedAt, LlmHealth? Health);
+    private volatile HealthSnapshot? _healthCache;
 
     public Corpus Corpus { get; }
     public Bm25Index Index { get; }
@@ -41,7 +44,7 @@ public class QaPipeline
     {
         if (_healthCache is { } c && DateTime.UtcNow - c.CheckedAt < HealthCacheTtl) return c.Health;
         var health = await _llm.GetHealthAsync(ct);
-        _healthCache = (DateTime.UtcNow, health);
+        _healthCache = new HealthSnapshot(DateTime.UtcNow, health);
         return health;
     }
 
