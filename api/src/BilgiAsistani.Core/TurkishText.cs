@@ -7,13 +7,15 @@ namespace BilgiAsistani.Core;
 /// Türkçe eklemeli bir dil olduğundan tam bir morfolojik çözümleyici yerine, bilgi erişiminde
 /// iyi sonuç verdiği bilinen "ilk 5 karakter" (F5) kesmesi kullanılır:
 /// "iadeler" -> "iade", "kargoya" -> "kargo".
+/// Arama için Türkçe karakterler ASCII karşılıklarına indirgenir; böylece Türkçe karakter
+/// kullanılmadan yazılan sorular da ("iade suresi kac gun") aynı bölümlerle eşleşir.
 /// </summary>
 public static partial class TurkishText
 {
     public const int StemLength = 5;
     public const int MinPrefix = 4;
 
-    private static readonly HashSet<string> Stopwords =
+    private static readonly string[] RawStopwords =
     [
         "acaba", "ama", "ancak", "bana", "bazı", "ben", "benim", "bir", "biri", "birkaç", "bu", "bunu",
         "buna", "çok", "da", "de", "daha", "defa", "diye", "en", "gibi", "hangi", "hem", "hep", "her",
@@ -25,6 +27,8 @@ public static partial class TurkishText
         "kaçta", "hâlâ", "artık", "şimdi", "kim", "kime", "kimin", "neler", "nelerdir", "the", "nova",
     ];
 
+    private static readonly HashSet<string> Stopwords = RawStopwords.Select(Fold).ToHashSet();
+
     [GeneratedRegex("[0-9a-zçğıöşüâîû]+")]
     private static partial Regex TokenRegex();
 
@@ -34,9 +38,20 @@ public static partial class TurkishText
     /// <summary>I/İ harflerini Türkçe kurallarıyla küçültür ("İADE" -> "iade", "IŞIK" -> "ışık").</summary>
     public static string Normalize(string text) => text.Replace('I', 'ı').Replace('İ', 'i').ToLowerInvariant();
 
+    /// <summary>Küçük harfli metindeki Türkçe karakterleri ASCII karşılıklarına indirger ("süresi" -> "suresi").</summary>
+    public static string Fold(string text) => string.Create(text.Length, text, static (span, src) =>
+    {
+        for (var i = 0; i < src.Length; i++)
+            span[i] = src[i] switch
+            {
+                'ç' => 'c', 'ğ' => 'g', 'ı' => 'i', 'ö' => 'o', 'ş' => 's', 'ü' => 'u', 'â' => 'a', 'î' => 'i', 'û' => 'u',
+                var ch => ch,
+            };
+    });
+
     /// <summary>
-    /// F5 kökü; ünsüz yumuşaması (kitap -> kitabı, renk -> rengi) aynı köke eşlensin diye
-    /// yumuşak ünsüzler sert karşılıklarına çevrilir.
+    /// F5 kökü (ASCII'ye indirgenmiş belirteç üzerinde); ünsüz yumuşaması (kitap -> kitabı, renk -> rengi)
+    /// aynı köke eşlensin diye yumuşak ünsüzler sert karşılıklarına çevrilir. ç/c çifti indirgemeyle zaten birleşir.
     /// </summary>
     public static string Stem(string token)
     {
@@ -44,7 +59,7 @@ public static partial class TurkishText
         return string.Create(s.Length, s, static (span, src) =>
         {
             for (var i = 0; i < src.Length; i++)
-                span[i] = src[i] switch { 'b' => 'p', 'c' => 'ç', 'd' => 't', 'ğ' => 'k', 'g' => 'k', var ch => ch };
+                span[i] = src[i] switch { 'b' => 'p', 'd' => 't', 'g' => 'k', var ch => ch };
         });
     }
 
@@ -56,10 +71,10 @@ public static partial class TurkishText
         return shorter.Length >= MinPrefix && longer.StartsWith(shorter, StringComparison.Ordinal);
     }
 
-    /// <summary>Metni normalize edip durak kelimeleri atar ve kök listesi döndürür.</summary>
+    /// <summary>Metni normalize edip ASCII'ye indirger, durak kelimeleri atar ve kök listesi döndürür.</summary>
     public static List<string> Tokenize(string text) =>
         TokenRegex().Matches(Normalize(text))
-            .Select(m => m.Value)
+            .Select(m => Fold(m.Value))
             .Where(t => t.Length > 1 && !Stopwords.Contains(t))
             .Select(Stem)
             .ToList();

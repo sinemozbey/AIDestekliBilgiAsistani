@@ -10,7 +10,14 @@ public class TurkishTextTests
 
     [Fact]
     public void Tokenize_RemovesStopwordsAndStems() =>
-        Assert.Equal(["iate", "süres"], TurkishText.Tokenize("İade süresi ne kadar?"));
+        Assert.Equal(["iate", "sures"], TurkishText.Tokenize("İade süresi ne kadar?"));
+
+    [Theory]
+    [InlineData("iade suresi kac gun", "İade süresi kaç gün")]
+    [InlineData("sifremi unuttum", "Şifremi unuttum")]
+    [InlineData("CAGRI MERKEZI", "çağrı merkezi")]
+    public void Tokenize_MatchesQuestionsWrittenWithoutTurkishCharacters(string ascii, string turkish) =>
+        Assert.Equal(TurkishText.Tokenize(turkish), TurkishText.Tokenize(ascii));
 
     [Fact]
     public void Stem_MapsConsonantSofteningToSameRoot() =>
