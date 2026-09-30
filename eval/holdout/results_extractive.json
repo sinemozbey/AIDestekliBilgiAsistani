@@ -1,0 +1,806 @@
+[
+  {
+    "case": {
+      "id": "H1",
+      "type": "normal",
+      "question": "Evdeki internet 5GHz, termostat buna bağlanır mı?",
+      "expected_answerable": true,
+      "expected_answer": "Hayır; yalnızca 2.4 GHz ağlar desteklenir.",
+      "expected_doc": "nova-termo-kurulum",
+      "expected_keywords": [
+        "2.4",
+        "2,4"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Evdeki internet 5GHz, termostat buna bağlanır mı?",
+      "answerable": false,
+      "answer": "Dokümanlarda bu soruyu yanıtlamak için yeterli bilgi bulunamadı.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "extractive",
+      "model": null,
+      "candidates": [
+        {
+          "chunk_id": "nova-termo-kurulum#3",
+          "score": 5.118
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#2",
+          "score": 5.043
+        },
+        {
+          "chunk_id": "sorun-giderme#1",
+          "score": 4.86
+        },
+        {
+          "chunk_id": "sorun-giderme#3",
+          "score": 4.007
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#1",
+          "score": 3.132
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#4",
+          "score": 3.002
+        },
+        {
+          "chunk_id": "hesap-uyelik#1",
+          "score": 2.808
+        },
+        {
+          "chunk_id": "sorun-giderme#4",
+          "score": 2.244
+        },
+        {
+          "chunk_id": "sorun-giderme#2",
+          "score": 2.12
+        },
+        {
+          "chunk_id": "hesap-uyelik#2",
+          "score": 1.912
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": false
+    },
+    "passed": false
+  },
+  {
+    "case": {
+      "id": "H2",
+      "type": "normal",
+      "question": "Cihazın ekranı hiç açılmıyor, ne yapabilirim?",
+      "expected_answerable": true,
+      "expected_answer": "Montaj plakası bağlantılarını kontrol et, sigortayı kapatıp 30 sn sonra aç; düzelmezse garanti başvurusu.",
+      "expected_doc": "sorun-giderme",
+      "expected_keywords": [
+        "sigorta",
+        "30 saniye"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Cihazın ekranı hiç açılmıyor, ne yapabilirim?",
+      "answerable": false,
+      "answer": "Dokümanlarda bu soruyu yanıtlamak için yeterli bilgi bulunamadı.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "extractive",
+      "model": null,
+      "candidates": [
+        {
+          "chunk_id": "sorun-giderme#3",
+          "score": 5.779
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#5",
+          "score": 5.167
+        },
+        {
+          "chunk_id": "garanti-kosullari#3",
+          "score": 4.393
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#4",
+          "score": 3.392
+        },
+        {
+          "chunk_id": "sorun-giderme#2",
+          "score": 2.883
+        },
+        {
+          "chunk_id": "sorun-giderme#1",
+          "score": 2.831
+        },
+        {
+          "chunk_id": "garanti-kosullari#4",
+          "score": 2.221
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#3",
+          "score": 2.202
+        },
+        {
+          "chunk_id": "kargo-teslimat#3",
+          "score": 1.874
+        },
+        {
+          "chunk_id": "hesap-uyelik#1",
+          "score": 1.846
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": false
+    },
+    "passed": false
+  },
+  {
+    "case": {
+      "id": "H3",
+      "type": "normal",
+      "question": "Şifremi unuttum, maile gelen link ne kadar süre çalışır?",
+      "expected_answerable": true,
+      "expected_answer": "30 dakika.",
+      "expected_doc": "hesap-uyelik",
+      "expected_keywords": [
+        "30 dakika"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Şifremi unuttum, maile gelen link ne kadar süre çalışır?",
+      "answerable": false,
+      "answer": "Dokümanlarda bu soruyu yanıtlamak için yeterli bilgi bulunamadı.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "extractive",
+      "model": null,
+      "candidates": [
+        {
+          "chunk_id": "hesap-uyelik#1",
+          "score": 9.803
+        },
+        {
+          "chunk_id": "destek-kanallari-v1#3",
+          "score": 2.801
+        },
+        {
+          "chunk_id": "garanti-kosullari#1",
+          "score": 2.784
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#4",
+          "score": 2.739
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#2",
+          "score": 2.611
+        },
+        {
+          "chunk_id": "destek-kanallari-v1#2",
+          "score": 2.595
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#2",
+          "score": 2.595
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#2",
+          "score": 2.561
+        },
+        {
+          "chunk_id": "kargo-teslimat#1",
+          "score": 2.423
+        },
+        {
+          "chunk_id": "garanti-kosullari#4",
+          "score": 2.403
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": false
+    },
+    "passed": false
+  },
+  {
+    "case": {
+      "id": "H4",
+      "type": "normal",
+      "question": "Termostat odayı olduğundan daha sıcak gösteriyor, bunu düzeltebilir miyim?",
+      "expected_answerable": true,
+      "expected_answer": "Isı kaynaklarından uzak iç duvara monte et; uygulamadaki Sıcaklık Kalibrasyonu ile ±2 °C düzeltme.",
+      "expected_doc": "sorun-giderme",
+      "expected_keywords": [
+        "kalibrasyon",
+        "±2",
+        "2 °C"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Termostat odayı olduğundan daha sıcak gösteriyor, bunu düzeltebilir miyim?",
+      "answerable": true,
+      "answer": "Cihazı güneş ışığı, radyatör veya mutfak gibi ısı kaynaklarından uzak bir iç duvara monte edin. Uygulamadaki \"Sıcaklık Kalibrasyonu\" ayarıyla ±2 °C düzeltme yapılabilir.",
+      "sources": [
+        {
+          "doc_id": "sorun-giderme",
+          "title": "Nova Termo Sorun Giderme Rehberi",
+          "version": "1.1",
+          "effective_date": "2024-11-05",
+          "status": "yururlukte",
+          "chunk_id": "sorun-giderme#4",
+          "section": "Sıcaklık Yanlış Gösteriliyor",
+          "excerpt": "Cihazı güneş ışığı, radyatör veya mutfak gibi ısı kaynaklarından uzak bir iç duvara monte edin. Uygulamadaki \"Sıcaklık Kalibrasyonu\" ayarıyla ±2 °C düzeltme yapılabilir.",
+          "score": 16.893
+        }
+      ],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "extractive",
+      "model": null,
+      "candidates": [
+        {
+          "chunk_id": "sorun-giderme#4",
+          "score": 16.893
+        },
+        {
+          "chunk_id": "sorun-giderme#1",
+          "score": 4.822
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#2",
+          "score": 3.21
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#1",
+          "score": 3.132
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#4",
+          "score": 3.002
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#3",
+          "score": 2.837
+        },
+        {
+          "chunk_id": "sorun-giderme#3",
+          "score": 2.222
+        },
+        {
+          "chunk_id": "sorun-giderme#2",
+          "score": 2.12
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "H5",
+      "type": "cevapsiz",
+      "question": "Termostatı Google Home'a bağlayabilir miyim?",
+      "expected_answerable": false,
+      "expected_answer": "Dokümanlarda bilgi yok.",
+      "expected_doc": null,
+      "expected_keywords": null,
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Termostatı Google Home'a bağlayabilir miyim?",
+      "answerable": false,
+      "answer": "Dokümanlarda bu soruyu yanıtlamak için yeterli bilgi bulunamadı.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "extractive",
+      "model": null,
+      "candidates": [
+        {
+          "chunk_id": "nova-termo-kurulum#3",
+          "score": 5.118
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#2",
+          "score": 5.043
+        },
+        {
+          "chunk_id": "sorun-giderme#1",
+          "score": 4.86
+        },
+        {
+          "chunk_id": "sorun-giderme#3",
+          "score": 4.007
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#1",
+          "score": 3.132
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#4",
+          "score": 3.002
+        },
+        {
+          "chunk_id": "hesap-uyelik#1",
+          "score": 2.808
+        },
+        {
+          "chunk_id": "sorun-giderme#4",
+          "score": 2.244
+        },
+        {
+          "chunk_id": "sorun-giderme#2",
+          "score": 2.12
+        },
+        {
+          "chunk_id": "hesap-uyelik#2",
+          "score": 1.912
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "kaynak_uydurulmadı": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "H6",
+      "type": "cevapsiz",
+      "question": "Nova Plus üyeliğimi aile üyelerimle paylaşabilir miyim?",
+      "expected_answerable": false,
+      "expected_answer": "Dokümanlarda bilgi yok.",
+      "expected_doc": null,
+      "expected_keywords": null,
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Nova Plus üyeliğimi aile üyelerimle paylaşabilir miyim?",
+      "answerable": false,
+      "answer": "Dokümanlarda bu soruyu yanıtlamak için yeterli bilgi bulunamadı.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "extractive",
+      "model": null,
+      "candidates": [
+        {
+          "chunk_id": "hesap-uyelik#4",
+          "score": 3.426
+        },
+        {
+          "chunk_id": "hesap-uyelik#1",
+          "score": 3.354
+        },
+        {
+          "chunk_id": "hesap-uyelik#2",
+          "score": 3.252
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#2",
+          "score": 3.247
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#1",
+          "score": 3.221
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#4",
+          "score": 2.931
+        },
+        {
+          "chunk_id": "hesap-uyelik#3",
+          "score": 2.898
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#3",
+          "score": 2.722
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#4",
+          "score": 2.159
+        },
+        {
+          "chunk_id": "garanti-kosullari#1",
+          "score": 2.028
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "kaynak_uydurulmadı": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "H7",
+      "type": "cevapsiz",
+      "question": "Garanti kapsamı dışındaki bir onarım bana kaça patlar?",
+      "expected_answerable": false,
+      "expected_answer": "Dokümanlarda bilgi yok (yalnızca kapsam dışı durumlar listeleniyor, ücret yok).",
+      "expected_doc": null,
+      "expected_keywords": null,
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Garanti kapsamı dışındaki bir onarım bana kaça patlar?",
+      "answerable": false,
+      "answer": "Dokümanlarda bu soruyu yanıtlamak için yeterli bilgi bulunamadı.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "extractive",
+      "model": null,
+      "candidates": [
+        {
+          "chunk_id": "garanti-kosullari#2",
+          "score": 12.431
+        },
+        {
+          "chunk_id": "garanti-kosullari#4",
+          "score": 12.126
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#1",
+          "score": 6.793
+        },
+        {
+          "chunk_id": "garanti-kosullari#1",
+          "score": 3.97
+        },
+        {
+          "chunk_id": "garanti-kosullari#3",
+          "score": 3.83
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#1",
+          "score": 3.787
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#3",
+          "score": 2.221
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#2",
+          "score": 1.998
+        },
+        {
+          "chunk_id": "sorun-giderme#3",
+          "score": 1.784
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "kaynak_uydurulmadı": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "H8",
+      "type": "celiskili",
+      "question": "Aldığım termostatı geri göndermek istiyorum, ne kadar vaktim var?",
+      "expected_answerable": true,
+      "expected_answer": "30 gün (v1'deki 14 gün geçersiz).",
+      "expected_doc": "iade-politikasi-v2",
+      "expected_keywords": [
+        "30 gün"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": [
+        "14 gün"
+      ]
+    },
+    "response": {
+      "question": "Aldığım termostatı geri göndermek istiyorum, ne kadar vaktim var?",
+      "answerable": false,
+      "answer": "Dokümanlarda bu soruyu yanıtlamak için yeterli bilgi bulunamadı.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "extractive",
+      "model": null,
+      "candidates": [
+        {
+          "chunk_id": "nova-termo-kurulum#2",
+          "score": 3.21
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#1",
+          "score": 3.132
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#4",
+          "score": 3.002
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#2",
+          "score": 2.964
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#2",
+          "score": 2.838
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#3",
+          "score": 2.837
+        },
+        {
+          "chunk_id": "kargo-teslimat#4",
+          "score": 2.815
+        },
+        {
+          "chunk_id": "sorun-giderme#4",
+          "score": 2.244
+        },
+        {
+          "chunk_id": "sorun-giderme#3",
+          "score": 2.222
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#3",
+          "score": 2.198
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": false
+    },
+    "passed": false
+  },
+  {
+    "case": {
+      "id": "H9",
+      "type": "celiskili",
+      "question": "Pazar günü telefonla size ulaşabilir miyim?",
+      "expected_answerable": true,
+      "expected_answer": "Hayır, pazar günü telefon desteği yok (güncel sürüme göre canlı sohbet 7/24 açık).",
+      "expected_doc": "destek-kanallari-v2",
+      "expected_keywords": [
+        "hayır",
+        "yoktur",
+        "bulunmamaktadır",
+        "verilmez",
+        "hizmet vermez"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Pazar günü telefonla size ulaşabilir miyim?",
+      "answerable": false,
+      "answer": "Dokümanlarda bu soruyu yanıtlamak için yeterli bilgi bulunamadı.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "extractive",
+      "model": null,
+      "candidates": [
+        {
+          "chunk_id": "destek-kanallari-v2#1",
+          "score": 6.727
+        },
+        {
+          "chunk_id": "destek-kanallari-v1#1",
+          "score": 3.947
+        },
+        {
+          "chunk_id": "kargo-teslimat#1",
+          "score": 2.808
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#6",
+          "score": 2.641
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#4",
+          "score": 2.579
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#2",
+          "score": 2.386
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#5",
+          "score": 2.028
+        },
+        {
+          "chunk_id": "destek-kanallari-v1#2",
+          "score": 1.998
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#2",
+          "score": 1.998
+        },
+        {
+          "chunk_id": "garanti-kosullari#4",
+          "score": 1.968
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": false
+    },
+    "passed": false
+  },
+  {
+    "case": {
+      "id": "H10",
+      "type": "celiskili",
+      "question": "Geri gönderdiğim ürünün parası hesabıma kaç günde yatar?",
+      "expected_answerable": true,
+      "expected_answer": "Ürün depoya ulaştıktan sonra 5 iş günü içinde karta iade; bankaya göre +3 iş günü (v1'de 14).",
+      "expected_doc": "iade-politikasi-v2",
+      "expected_keywords": [
+        "5 iş günü"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": [
+        "14 iş günü"
+      ]
+    },
+    "response": {
+      "question": "Geri gönderdiğim ürünün parası hesabıma kaç günde yatar?",
+      "answerable": false,
+      "answer": "Dokümanlarda bu soruyu yanıtlamak için yeterli bilgi bulunamadı.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "extractive",
+      "model": null,
+      "candidates": [
+        {
+          "chunk_id": "iade-politikasi-v2#6",
+          "score": 8.352
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#5",
+          "score": 6.803
+        },
+        {
+          "chunk_id": "hesap-uyelik#2",
+          "score": 4.978
+        },
+        {
+          "chunk_id": "hesap-uyelik#1",
+          "score": 4.652
+        },
+        {
+          "chunk_id": "hesap-uyelik#3",
+          "score": 4.157
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#3",
+          "score": 3.99
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#4",
+          "score": 3.203
+        },
+        {
+          "chunk_id": "hesap-uyelik#4",
+          "score": 3.122
+        },
+        {
+          "chunk_id": "kargo-teslimat#4",
+          "score": 2.815
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#2",
+          "score": 1.819
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": false
+    },
+    "passed": false
+  },
+  {
+    "case": {
+      "id": "H11",
+      "type": "celiskili",
+      "question": "İade ederken kargo parası benden mi çıkıyor?",
+      "expected_answerable": true,
+      "expected_answer": "HızlıKargo ile ücretsiz; başka firma kullanılırsa müşteriye ait (kargo dokümanındaki eski kural geçersiz).",
+      "expected_doc": "iade-politikasi-v2",
+      "expected_keywords": [
+        "ücretsiz"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "İade ederken kargo parası benden mi çıkıyor?",
+      "answerable": false,
+      "answer": "Dokümanlarda bu soruyu yanıtlamak için yeterli bilgi bulunamadı.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "extractive",
+      "model": null,
+      "candidates": [
+        {
+          "chunk_id": "iade-politikasi-v1#5",
+          "score": 7.363
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#6",
+          "score": 7.026
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#3",
+          "score": 5.805
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#3",
+          "score": 5.729
+        },
+        {
+          "chunk_id": "kargo-teslimat#4",
+          "score": 5.36
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#4",
+          "score": 4.092
+        },
+        {
+          "chunk_id": "kargo-teslimat#2",
+          "score": 3.654
+        },
+        {
+          "chunk_id": "kargo-teslimat#3",
+          "score": 3.277
+        },
+        {
+          "chunk_id": "kargo-teslimat#1",
+          "score": 3.255
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#4",
+          "score": 2.402
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": false
+    },
+    "passed": false
+  }
+]

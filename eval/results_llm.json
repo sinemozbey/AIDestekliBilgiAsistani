@@ -1,0 +1,1624 @@
+[
+  {
+    "case": {
+      "id": "N1",
+      "type": "normal",
+      "question": "Nova Termo 5 GHz Wi-Fi ağlarına bağlanabiliyor mu?",
+      "expected_answerable": true,
+      "expected_answer": "Hayır; yalnızca 2.4 GHz ağlar desteklenir.",
+      "expected_doc": "nova-termo-kurulum",
+      "expected_keywords": [
+        "2.4 GHz",
+        "2,4 GHz"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Nova Termo 5 GHz Wi-Fi ağlarına bağlanabiliyor mu?",
+      "answerable": true,
+      "answer": "Hayır, Nova Termo 5 GHz Wi-Fi ağlarını desteklemez; kurulum ve bağlantı için 2.4 GHz Wi-Fi ağı gereklidir. Cihaz ağa bağlanmıyorsa öncelikle ağın 2.4 GHz olduğundan emin olunmalıdır.",
+      "sources": [
+        {
+          "doc_id": "nova-termo-kurulum",
+          "title": "Nova Termo Akıllı Termostat Kurulum Kılavuzu",
+          "version": "1.2",
+          "effective_date": "2024-05-20",
+          "status": "yururlukte",
+          "chunk_id": "nova-termo-kurulum#2",
+          "section": "Ön Koşullar",
+          "excerpt": "Kurulum için 2.4 GHz Wi-Fi ağı gereklidir; Nova Termo 5 GHz ağları desteklemez. Kombinizin açık/kapa (on/off) termostat bağlantısını desteklemesi gerekir.",
+          "score": 16.656
+        },
+        {
+          "doc_id": "sorun-giderme",
+          "title": "Nova Termo Sorun Giderme Rehberi",
+          "version": "1.1",
+          "effective_date": "2024-11-05",
+          "status": "yururlukte",
+          "chunk_id": "sorun-giderme#1",
+          "section": "Cihaz Wi-Fi Ağına Bağlanmıyor",
+          "excerpt": "Ağınızın 2.4 GHz olduğundan emin olun. Modem ile cihaz arasındaki mesafe 10 metreden fazlaysa cihazı modeme yaklaştırın. Sorun devam ederse cihazı yeniden başlatın ve eşleştirmeyi tekrarlayın.",
+          "score": 14.001
+        }
+      ],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "nova-termo-kurulum#2",
+          "score": 16.656
+        },
+        {
+          "chunk_id": "sorun-giderme#1",
+          "score": 14.001
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#3",
+          "score": 8.71
+        },
+        {
+          "chunk_id": "sorun-giderme#2",
+          "score": 6.116
+        },
+        {
+          "chunk_id": "sorun-giderme#3",
+          "score": 4.007
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#1",
+          "score": 3.132
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#4",
+          "score": 3.002
+        },
+        {
+          "chunk_id": "hesap-uyelik#1",
+          "score": 2.808
+        },
+        {
+          "chunk_id": "sorun-giderme#4",
+          "score": 2.244
+        },
+        {
+          "chunk_id": "hesap-uyelik#2",
+          "score": 1.912
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "N2",
+      "type": "normal",
+      "question": "Termostatı fabrika ayarlarına nasıl sıfırlarım?",
+      "expected_answerable": true,
+      "expected_answer": "Yan düğmeye 10 saniye basılı tutulur; ekran turuncu yanıp sönünce bırakılır.",
+      "expected_doc": "sorun-giderme",
+      "expected_keywords": [
+        "10 saniye"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Termostatı fabrika ayarlarına nasıl sıfırlarım?",
+      "answerable": true,
+      "answer": "Nova Termo'yu fabrika ayarlarına sıfırlamak için cihazın yan tarafındaki düğmeye 10 saniye basılı tutun ve ekran turuncu renkte yanıp sönmeye başladığında düğmeyi bırakın. Sıfırlama sonrasında tüm programlar ve Wi-Fi ayarları silinir.",
+      "sources": [
+        {
+          "doc_id": "sorun-giderme",
+          "title": "Nova Termo Sorun Giderme Rehberi",
+          "version": "1.1",
+          "effective_date": "2024-11-05",
+          "status": "yururlukte",
+          "chunk_id": "sorun-giderme#2",
+          "section": "Fabrika Ayarlarına Sıfırlama",
+          "excerpt": "Cihazın yan tarafındaki düğmeye 10 saniye basılı tutun. Ekran turuncu renkte yanıp sönmeye başladığında düğmeyi bırakın. Sıfırlama sonrasında tüm programlar ve Wi-Fi ayarları silinir.",
+          "score": 17.984
+        }
+      ],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "sorun-giderme#2",
+          "score": 17.984
+        },
+        {
+          "chunk_id": "hesap-uyelik#1",
+          "score": 5.303
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#2",
+          "score": 3.21
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#1",
+          "score": 3.132
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#4",
+          "score": 3.002
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#3",
+          "score": 2.837
+        },
+        {
+          "chunk_id": "sorun-giderme#4",
+          "score": 2.244
+        },
+        {
+          "chunk_id": "sorun-giderme#3",
+          "score": 2.222
+        },
+        {
+          "chunk_id": "sorun-giderme#1",
+          "score": 2.026
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "N3",
+      "type": "normal",
+      "question": "Cihazların garanti süresi ne kadar?",
+      "expected_answerable": true,
+      "expected_answer": "Fatura tarihinden itibaren 2 yıl (Nova Plus abonelerinde 3 yıl).",
+      "expected_doc": "garanti-kosullari",
+      "expected_keywords": [
+        "2 yıl",
+        "iki yıl"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Cihazların garanti süresi ne kadar?",
+      "answerable": true,
+      "answer": "Tüm Nova cihazları fatura tarihinden itibaren 2 yıl garantilidir. Nova Plus aboneleri için bu süre, abonelik devam ettiği sürece 3 yıla uzatılır.",
+      "sources": [
+        {
+          "doc_id": "garanti-kosullari",
+          "title": "Garanti Koşulları",
+          "version": "1.0",
+          "effective_date": "2024-01-10",
+          "status": "yururlukte",
+          "chunk_id": "garanti-kosullari#1",
+          "section": "Garanti Süresi",
+          "excerpt": "Tüm Nova cihazları fatura tarihinden itibaren 2 yıl garantilidir. Nova Plus aboneleri için garanti süresi abonelik devam ettiği sürece 3 yıla uzatılır.",
+          "score": 8.632
+        }
+      ],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "garanti-kosullari#1",
+          "score": 8.632
+        },
+        {
+          "chunk_id": "garanti-kosullari#4",
+          "score": 8.205
+        },
+        {
+          "chunk_id": "garanti-kosullari#3",
+          "score": 6.404
+        },
+        {
+          "chunk_id": "garanti-kosullari#2",
+          "score": 3.776
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#2",
+          "score": 3.002
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#2",
+          "score": 2.944
+        },
+        {
+          "chunk_id": "sorun-giderme#1",
+          "score": 2.831
+        },
+        {
+          "chunk_id": "kargo-teslimat#1",
+          "score": 2.786
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#3",
+          "score": 2.202
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#2",
+          "score": 1.998
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "N4",
+      "type": "normal",
+      "question": "Nova Plus aboneliğimi iptal edersem kalan süre için para iadesi alabilir miyim?",
+      "expected_answerable": true,
+      "expected_answer": "Hayır; iptal dönem sonunda geçerli olur, kısmi ücret iadesi yapılmaz.",
+      "expected_doc": "nova-plus-abonelik",
+      "expected_keywords": [
+        "yapılmaz",
+        "alamaz",
+        "yapılmamaktadır",
+        "iade edilmez"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Nova Plus aboneliğimi iptal edersem kalan süre için para iadesi alabilir miyim?",
+      "answerable": true,
+      "answer": "Hayır, Nova Plus aboneliğini iptal ettiğinizde kalan süre için kısmi ücret iadesi yapılmaz. İptal, \"Profil > Abonelik\" menüsünden istediğiniz zaman yapılabilir ve mevcut ödeme döneminin sonunda geçerli olur; bu nedenle dönem sonuna kadar abonelik avantajlarından yararlanmaya devam edersiniz.",
+      "sources": [
+        {
+          "doc_id": "nova-plus-abonelik",
+          "title": "Nova Plus Abonelik Koşulları",
+          "version": "1.0",
+          "effective_date": "2024-07-01",
+          "status": "yururlukte",
+          "chunk_id": "nova-plus-abonelik#3",
+          "section": "Abonelik İptali",
+          "excerpt": "Abonelik \"Profil > Abonelik\" menüsünden istenildiği zaman iptal edilebilir. İptal, mevcut ödeme döneminin sonunda geçerli olur ve kalan süre için kısmi ücret iadesi yapılmaz.",
+          "score": 18.116
+        }
+      ],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "nova-plus-abonelik#3",
+          "score": 18.116
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#1",
+          "score": 8.519
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#6",
+          "score": 8.324
+        },
+        {
+          "chunk_id": "garanti-kosullari#1",
+          "score": 7.65
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#5",
+          "score": 7.3
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#2",
+          "score": 7.095
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#4",
+          "score": 6.548
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#2",
+          "score": 4.959
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#2",
+          "score": 4.944
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#4",
+          "score": 4.318
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "N5",
+      "type": "normal",
+      "question": "Kaç TL üzeri siparişlerde kargo ücretsiz?",
+      "expected_answerable": true,
+      "expected_answer": "500 TL ve üzeri siparişlerde.",
+      "expected_doc": "kargo-teslimat",
+      "expected_keywords": [
+        "500"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Kaç TL üzeri siparişlerde kargo ücretsiz?",
+      "answerable": true,
+      "answer": "500 TL ve üzeri siparişlerde kargo ücretsizdir.",
+      "sources": [
+        {
+          "doc_id": "kargo-teslimat",
+          "title": "Kargo ve Teslimat Bilgileri",
+          "version": "1.0",
+          "effective_date": "2024-02-12",
+          "status": "yururlukte",
+          "chunk_id": "kargo-teslimat#2",
+          "section": "Kargo Ücreti",
+          "excerpt": "500 TL ve üzeri siparişlerde kargo ücretsizdir. 500 TL altındaki siparişlerde 49,90 TL kargo ücreti alınır.",
+          "score": 17.514
+        }
+      ],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "kargo-teslimat#2",
+          "score": 17.514
+        },
+        {
+          "chunk_id": "kargo-teslimat#3",
+          "score": 7.896
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#1",
+          "score": 7.133
+        },
+        {
+          "chunk_id": "kargo-teslimat#1",
+          "score": 6.61
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#3",
+          "score": 6.391
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#3",
+          "score": 6.325
+        },
+        {
+          "chunk_id": "kargo-teslimat#4",
+          "score": 4.597
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#1",
+          "score": 2.613
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#3",
+          "score": 2.221
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#4",
+          "score": 2.132
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "N6",
+      "type": "normal",
+      "question": "Şifre sıfırlama bağlantısı ne kadar süre geçerli?",
+      "expected_answerable": true,
+      "expected_answer": "30 dakika.",
+      "expected_doc": "hesap-uyelik",
+      "expected_keywords": [
+        "30 dakika"
+      ],
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Şifre sıfırlama bağlantısı ne kadar süre geçerli?",
+      "answerable": true,
+      "answer": "Şifre sıfırlama bağlantısı, gönderildikten sonra 30 dakika geçerlidir. Bağlantıyı almak için giriş ekranındaki \"Şifremi Unuttum\" bağlantısına tıklayıp kayıtlı e-posta adresinizi girmeniz yeterlidir.",
+      "sources": [
+        {
+          "doc_id": "hesap-uyelik",
+          "title": "Hesap ve Üyelik İşlemleri",
+          "version": "1.0",
+          "effective_date": "2024-03-18",
+          "status": "yururlukte",
+          "chunk_id": "hesap-uyelik#1",
+          "section": "Şifre Sıfırlama",
+          "excerpt": "Giriş ekranındaki \"Şifremi Unuttum\" bağlantısına tıklayın ve kayıtlı e-posta adresinizi girin. Gönderilen sıfırlama bağlantısı 30 dakika geçerlidir.",
+          "score": 16.213
+        }
+      ],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "hesap-uyelik#1",
+          "score": 16.213
+        },
+        {
+          "chunk_id": "sorun-giderme#2",
+          "score": 4.885
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#2",
+          "score": 4.43
+        },
+        {
+          "chunk_id": "hesap-uyelik#2",
+          "score": 3.679
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#3",
+          "score": 3.194
+        },
+        {
+          "chunk_id": "sorun-giderme#1",
+          "score": 2.834
+        },
+        {
+          "chunk_id": "garanti-kosullari#1",
+          "score": 2.784
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#2",
+          "score": 2.561
+        },
+        {
+          "chunk_id": "kargo-teslimat#1",
+          "score": 2.423
+        },
+        {
+          "chunk_id": "garanti-kosullari#4",
+          "score": 2.403
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "U1",
+      "type": "cevapsiz",
+      "question": "Nova Termo, Amazon Alexa ile uyumlu mu?",
+      "expected_answerable": false,
+      "expected_answer": "Dokümanlarda bilgi yok.",
+      "expected_doc": null,
+      "expected_keywords": null,
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Nova Termo, Amazon Alexa ile uyumlu mu?",
+      "answerable": false,
+      "answer": "Nova Termo'nun Amazon Alexa ile uyumlu olup olmadığına dair bilgi dokümanlarda bulunmamaktadır.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "nova-termo-kurulum#2",
+          "score": 3.21
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#1",
+          "score": 3.132
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#4",
+          "score": 3.002
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#3",
+          "score": 2.837
+        },
+        {
+          "chunk_id": "sorun-giderme#4",
+          "score": 2.244
+        },
+        {
+          "chunk_id": "sorun-giderme#3",
+          "score": 2.222
+        },
+        {
+          "chunk_id": "sorun-giderme#2",
+          "score": 2.12
+        },
+        {
+          "chunk_id": "sorun-giderme#1",
+          "score": 2.026
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "kaynak_uydurulmadı": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "U2",
+      "type": "cevapsiz",
+      "question": "Yurt dışına gönderim yapıyor musunuz?",
+      "expected_answerable": false,
+      "expected_answer": "Dokümanlarda bilgi yok.",
+      "expected_doc": null,
+      "expected_keywords": null,
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Yurt dışına gönderim yapıyor musunuz?",
+      "answerable": false,
+      "answer": "Yurt dışına gönderim yapılıp yapılmadığına dair bilgi dokümanlarda bulunmamaktadır.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "garanti-kosullari#2",
+          "score": 4.556
+        },
+        {
+          "chunk_id": "kargo-teslimat#4",
+          "score": 2.815
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#1",
+          "score": 2.613
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#3",
+          "score": 2.221
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#3",
+          "score": 2.198
+        },
+        {
+          "chunk_id": "kargo-teslimat#3",
+          "score": 1.621
+        },
+        {
+          "chunk_id": "destek-kanallari-v1#2",
+          "score": 1.596
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#2",
+          "score": 1.596
+        },
+        {
+          "chunk_id": "hesap-uyelik#1",
+          "score": 1.596
+        },
+        {
+          "chunk_id": "hesap-uyelik#2",
+          "score": 1.528
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "kaynak_uydurulmadı": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "U3",
+      "type": "cevapsiz",
+      "question": "Nova Termo'nun satış fiyatı nedir?",
+      "expected_answerable": false,
+      "expected_answer": "Dokümanlarda bilgi yok (yalnızca Nova Plus abonelik ücreti var).",
+      "expected_doc": null,
+      "expected_keywords": null,
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Nova Termo'nun satış fiyatı nedir?",
+      "answerable": false,
+      "answer": "Nova Termo'nun satış fiyatına ilişkin bilgi sağlanan dokümanlarda bulunmamaktadır.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "iade-politikasi-v1#1",
+          "score": 3.496
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#2",
+          "score": 3.21
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#1",
+          "score": 3.132
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#4",
+          "score": 3.002
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#3",
+          "score": 2.837
+        },
+        {
+          "chunk_id": "sorun-giderme#4",
+          "score": 2.244
+        },
+        {
+          "chunk_id": "sorun-giderme#3",
+          "score": 2.222
+        },
+        {
+          "chunk_id": "sorun-giderme#2",
+          "score": 2.12
+        },
+        {
+          "chunk_id": "sorun-giderme#1",
+          "score": 2.026
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "kaynak_uydurulmadı": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "U4",
+      "type": "cevapsiz",
+      "question": "Siparişlerde kapıda ödeme seçeneği var mı?",
+      "expected_answerable": false,
+      "expected_answer": "Dokümanlarda bilgi yok (yalnızca abonelik ödeme yöntemleri var).",
+      "expected_doc": null,
+      "expected_keywords": null,
+      "expected_rejected": null,
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Siparişlerde kapıda ödeme seçeneği var mı?",
+      "answerable": false,
+      "answer": "Siparişlerde kapıda ödeme seçeneği olup olmadığına dair bilgi dokümanlarda bulunmamaktadır.",
+      "sources": [],
+      "version_decisions": [],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "kargo-teslimat#3",
+          "score": 4.619
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#4",
+          "score": 4.321
+        },
+        {
+          "chunk_id": "kargo-teslimat#1",
+          "score": 3.354
+        },
+        {
+          "chunk_id": "kargo-teslimat#2",
+          "score": 3.354
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#5",
+          "score": 2.423
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#3",
+          "score": 2.284
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#6",
+          "score": 2.19
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#4",
+          "score": 2.132
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "kaynak_uydurulmadı": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "C1",
+      "type": "celiskili",
+      "question": "Ürünü kaç gün içinde iade edebilirim?",
+      "expected_answerable": true,
+      "expected_answer": "30 gün (v1'deki 14 gün geçersiz).",
+      "expected_doc": "iade-politikasi-v2",
+      "expected_keywords": [
+        "30 gün"
+      ],
+      "expected_rejected": [
+        "iade-politikasi-v1"
+      ],
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Ürünü kaç gün içinde iade edebilirim?",
+      "answerable": true,
+      "answer": "Ürünü teslim aldığınız tarihten itibaren 30 gün içinde iade talebinde bulunabilirsiniz. Bu süre kampanyalı ürünler için de aynıdır.",
+      "sources": [
+        {
+          "doc_id": "iade-politikasi-v2",
+          "title": "İade ve Değişim Politikası",
+          "version": "2.0",
+          "effective_date": "2025-03-01",
+          "status": "yururlukte",
+          "chunk_id": "iade-politikasi-v2#2",
+          "section": "İade Süresi",
+          "excerpt": "Müşteriler ürünü teslim aldıkları tarihten itibaren 30 gün içinde iade talebinde bulunabilir. Kampanyalı ürünlerde de aynı süre geçerlidir.",
+          "score": 7.883
+        }
+      ],
+      "version_decisions": [
+        {
+          "family": "iade-politikasi",
+          "selected": {
+            "doc_id": "iade-politikasi-v2",
+            "title": "İade ve Değişim Politikası",
+            "version": "2.0",
+            "effective_date": "2025-03-01",
+            "status": "yururlukte"
+          },
+          "rejected": [
+            {
+              "doc_id": "iade-politikasi-v1",
+              "title": "İade ve Değişim Politikası",
+              "version": "1.0",
+              "effective_date": "2023-01-15",
+              "status": "yururlukten_kalkti",
+              "section": "İade Süresi",
+              "excerpt": "Müşteriler ürünü teslim aldıkları tarihten itibaren 14 gün içinde iade talebinde bulunabilir. 14 günlük süre dolduktan sonra iade talebi kabul edilmez."
+            }
+          ],
+          "rule": "1) yürürlükte olan sürüm, 2) en yeni yürürlük tarihi, 3) en yüksek sürüm numarası",
+          "explanation": "'İade ve Değişim Politikası' için birden fazla sürüm bulundu. v2.0 (yürürlük: 2025-03-01, yürürlükte) seçildi; v1.0 (2023-01-15, yürürlükten kalktı) yanıtta kullanılmadı."
+        }
+      ],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "iade-politikasi-v2#2",
+          "score": 7.883
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#2",
+          "score": 7.684
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#5",
+          "score": 5.929
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#6",
+          "score": 5.523
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#3",
+          "score": 4.13
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#4",
+          "score": 4.092
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#4",
+          "score": 4.051
+        },
+        {
+          "chunk_id": "hesap-uyelik#3",
+          "score": 3.715
+        },
+        {
+          "chunk_id": "kargo-teslimat#4",
+          "score": 2.36
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#3",
+          "score": 2.315
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true,
+      "çelişki_gösterildi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "C2",
+      "type": "celiskili",
+      "question": "Çağrı merkezi cumartesi günleri açık mı?",
+      "expected_answerable": true,
+      "expected_answer": "Evet, cumartesi 10:00-16:00 (v1'de hafta sonu kapalı).",
+      "expected_doc": "destek-kanallari-v2",
+      "expected_keywords": [
+        "10:00",
+        "10.00"
+      ],
+      "expected_rejected": [
+        "destek-kanallari-v1"
+      ],
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Çağrı merkezi cumartesi günleri açık mı?",
+      "answerable": true,
+      "answer": "Evet, çağrı merkezimiz (0850 123 45 67) cumartesi günleri 10:00-16:00 saatleri arasında hizmet vermektedir. Pazar günleri ise telefon desteği bulunmamaktadır.",
+      "sources": [
+        {
+          "doc_id": "destek-kanallari-v2",
+          "title": "Müşteri Destek Kanalları ve Çalışma Saatleri",
+          "version": "2.0",
+          "effective_date": "2024-09-01",
+          "status": "yururlukte",
+          "chunk_id": "destek-kanallari-v2#1",
+          "section": "Telefon Desteği",
+          "excerpt": "Çağrı merkezimiz 0850 123 45 67 numarasından hafta içi 08:00-20:00, cumartesi 10:00-16:00 saatleri arasında hizmet verir. Pazar günleri telefon desteği yoktur.",
+          "score": 10.711
+        }
+      ],
+      "version_decisions": [
+        {
+          "family": "destek-kanallari",
+          "selected": {
+            "doc_id": "destek-kanallari-v2",
+            "title": "Müşteri Destek Kanalları ve Çalışma Saatleri",
+            "version": "2.0",
+            "effective_date": "2024-09-01",
+            "status": "yururlukte"
+          },
+          "rejected": [
+            {
+              "doc_id": "destek-kanallari-v1",
+              "title": "Müşteri Destek Kanalları ve Çalışma Saatleri",
+              "version": "1.0",
+              "effective_date": "2022-06-01",
+              "status": "yururlukten_kalkti",
+              "section": "Telefon Desteği",
+              "excerpt": "Çağrı merkezimiz 0850 123 45 67 numarasından hafta içi 09:00-18:00 saatleri arasında hizmet verir. Hafta sonu telefon desteği bulunmamaktadır."
+            }
+          ],
+          "rule": "1) yürürlükte olan sürüm, 2) en yeni yürürlük tarihi, 3) en yüksek sürüm numarası",
+          "explanation": "'Müşteri Destek Kanalları ve Çalışma Saatleri' için birden fazla sürüm bulundu. v2.0 (yürürlük: 2024-09-01, yürürlükte) seçildi; v1.0 (2022-06-01, yürürlükten kalktı) yanıtta kullanılmadı."
+        }
+      ],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "destek-kanallari-v2#1",
+          "score": 10.711
+        },
+        {
+          "chunk_id": "destek-kanallari-v1#1",
+          "score": 5.234
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#2",
+          "score": 3.256
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true,
+      "çelişki_gösterildi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "C3",
+      "type": "celiskili",
+      "question": "Canlı sohbet desteğiniz var mı?",
+      "expected_answerable": true,
+      "expected_answer": "Evet, 7 gün 24 saat (v1'de sunulmuyordu).",
+      "expected_doc": "destek-kanallari-v2",
+      "expected_keywords": [
+        "24 saat",
+        "7/24"
+      ],
+      "expected_rejected": [
+        "destek-kanallari-v1"
+      ],
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Canlı sohbet desteğiniz var mı?",
+      "answerable": true,
+      "answer": "Evet, Nova uygulaması ve web sitesi üzerinden canlı sohbet desteğimiz 7 gün 24 saat hizmet vermektedir. Mesai saatleri dışında ilk yanıtı yapay zekâ asistanı verir; gerekirse talep bir temsilciye aktarılır.",
+      "sources": [
+        {
+          "doc_id": "destek-kanallari-v2",
+          "title": "Müşteri Destek Kanalları ve Çalışma Saatleri",
+          "version": "2.0",
+          "effective_date": "2024-09-01",
+          "status": "yururlukte",
+          "chunk_id": "destek-kanallari-v2#3",
+          "section": "Canlı Sohbet",
+          "excerpt": "Nova uygulaması ve web sitesi üzerinden canlı sohbet desteği 7 gün 24 saat hizmet verir. Mesai saatleri dışında ilk yanıtı yapay zekâ asistanı verir; gerekirse talep bir temsilciye aktarılır.",
+          "score": 13.381
+        }
+      ],
+      "version_decisions": [
+        {
+          "family": "destek-kanallari",
+          "selected": {
+            "doc_id": "destek-kanallari-v2",
+            "title": "Müşteri Destek Kanalları ve Çalışma Saatleri",
+            "version": "2.0",
+            "effective_date": "2024-09-01",
+            "status": "yururlukte"
+          },
+          "rejected": [
+            {
+              "doc_id": "destek-kanallari-v1",
+              "title": "Müşteri Destek Kanalları ve Çalışma Saatleri",
+              "version": "1.0",
+              "effective_date": "2022-06-01",
+              "status": "yururlukten_kalkti",
+              "section": "Canlı Sohbet",
+              "excerpt": "Canlı sohbet hizmeti şu anda sunulmamaktadır."
+            }
+          ],
+          "rule": "1) yürürlükte olan sürüm, 2) en yeni yürürlük tarihi, 3) en yüksek sürüm numarası",
+          "explanation": "'Müşteri Destek Kanalları ve Çalışma Saatleri' için birden fazla sürüm bulundu. v2.0 (yürürlük: 2024-09-01, yürürlükte) seçildi; v1.0 (2022-06-01, yürürlükten kalktı) yanıtta kullanılmadı."
+        }
+      ],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "destek-kanallari-v1#3",
+          "score": 13.381
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#3",
+          "score": 11.962
+        },
+        {
+          "chunk_id": "destek-kanallari-v1#2",
+          "score": 2.872
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#2",
+          "score": 2.872
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#4",
+          "score": 2.848
+        },
+        {
+          "chunk_id": "destek-kanallari-v1#1",
+          "score": 2.74
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#1",
+          "score": 2.679
+        },
+        {
+          "chunk_id": "nova-termo-kurulum#2",
+          "score": 1.971
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#2",
+          "score": 1.491
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#4",
+          "score": 1.387
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true,
+      "çelişki_gösterildi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "C4",
+      "type": "celiskili",
+      "question": "Mağazadan satın aldığım ürünü iade edebilir miyim?",
+      "expected_answerable": true,
+      "expected_answer": "Evet; v2 mağaza satışlarını kapsıyor (v1'de kapsam dışıydı).",
+      "expected_doc": "iade-politikasi-v2",
+      "expected_keywords": [
+        "evet",
+        "geçerlidir",
+        "iade edebilirsiniz",
+        "kapsamındadır"
+      ],
+      "expected_rejected": [
+        "iade-politikasi-v1"
+      ],
+      "forbidden_keywords": [
+        "müşteriye aittir",
+        "size aittir",
+        "siz ödersiniz",
+        "müşteri öder"
+      ]
+    },
+    "response": {
+      "question": "Mağazadan satın aldığım ürünü iade edebilir miyim?",
+      "answerable": true,
+      "answer": "Evet, iade ve değişim politikası mağazalardan satın alınan ürünler için de geçerlidir. Ürünü teslim aldığınız tarihten itibaren 30 gün içinde iade talebinde bulunabilirsiniz. Talep, Nova uygulamasında \"Siparişlerim > İade Talebi Oluştur\" menüsünden açılır ve ürün, orijinal kutusu ve aksesuarlarıyla birlikte sistemin ürettiği iade koduyla HızlıKargo şubesine teslim edilir.",
+      "sources": [
+        {
+          "doc_id": "iade-politikasi-v2",
+          "title": "İade ve Değişim Politikası",
+          "version": "2.0",
+          "effective_date": "2025-03-01",
+          "status": "yururlukte",
+          "chunk_id": "iade-politikasi-v2#1",
+          "section": "Kapsam",
+          "excerpt": "Bu politika, Nova Ev Teknolojileri'nin web sitesi, mobil uygulaması ve mağazalarından satın alınan tüm ürünler için geçerlidir. 1 Mart 2025 tarihinden itibaren sürüm 1.0'ın yerini alır.",
+          "score": 7.631
+        },
+        {
+          "doc_id": "iade-politikasi-v2",
+          "title": "İade ve Değişim Politikası",
+          "version": "2.0",
+          "effective_date": "2025-03-01",
+          "status": "yururlukte",
+          "chunk_id": "iade-politikasi-v2#2",
+          "section": "İade Süresi",
+          "excerpt": "Müşteriler ürünü teslim aldıkları tarihten itibaren 30 gün içinde iade talebinde bulunabilir. Kampanyalı ürünlerde de aynı süre geçerlidir.",
+          "score": 7.131
+        },
+        {
+          "doc_id": "iade-politikasi-v2",
+          "title": "İade ve Değişim Politikası",
+          "version": "2.0",
+          "effective_date": "2025-03-01",
+          "status": "yururlukte",
+          "chunk_id": "iade-politikasi-v2#4",
+          "section": "İade Adımları",
+          "excerpt": "İade talebi Nova uygulamasında \"Siparişlerim > İade Talebi Oluştur\" menüsünden açılır. Sistem otomatik olarak bir iade kodu üretir; ürün, orijinal kutusu ve aksesuarlarıyla birlikte bu kodla HızlıKargo şubesine teslim edilir.",
+          "score": 4.051
+        }
+      ],
+      "version_decisions": [
+        {
+          "family": "iade-politikasi",
+          "selected": {
+            "doc_id": "iade-politikasi-v2",
+            "title": "İade ve Değişim Politikası",
+            "version": "2.0",
+            "effective_date": "2025-03-01",
+            "status": "yururlukte"
+          },
+          "rejected": [
+            {
+              "doc_id": "iade-politikasi-v1",
+              "title": "İade ve Değişim Politikası",
+              "version": "1.0",
+              "effective_date": "2023-01-15",
+              "status": "yururlukten_kalkti",
+              "section": "Kapsam",
+              "excerpt": "Bu politika, Nova Ev Teknolojileri'nin web sitesi ve mobil uygulaması üzerinden satın alınan tüm ürünler için geçerlidir. Mağaza içi satışlar bu politikanın kapsamı dışındadır."
+            }
+          ],
+          "rule": "1) yürürlükte olan sürüm, 2) en yeni yürürlük tarihi, 3) en yüksek sürüm numarası",
+          "explanation": "'İade ve Değişim Politikası' için birden fazla sürüm bulundu. v2.0 (yürürlük: 2025-03-01, yürürlükte) seçildi; v1.0 (2023-01-15, yürürlükten kalktı) yanıtta kullanılmadı."
+        }
+      ],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "iade-politikasi-v1#1",
+          "score": 7.631
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#1",
+          "score": 7.427
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#2",
+          "score": 7.131
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#2",
+          "score": 6.964
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#5",
+          "score": 4.308
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#3",
+          "score": 4.13
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#4",
+          "score": 4.092
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#6",
+          "score": 4.058
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#4",
+          "score": 4.051
+        },
+        {
+          "chunk_id": "kargo-teslimat#4",
+          "score": 2.36
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true,
+      "eski_bilgi_sızmadı": true,
+      "çelişki_gösterildi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "C5",
+      "type": "celiskili",
+      "question": "Para iadesi kaç iş gününde yapılır?",
+      "expected_answerable": true,
+      "expected_answer": "Ürün depoya ulaştıktan sonra 5 iş günü (v1'de 14).",
+      "expected_doc": "iade-politikasi-v2",
+      "expected_keywords": [
+        "5 iş günü"
+      ],
+      "expected_rejected": [
+        "iade-politikasi-v1"
+      ],
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Para iadesi kaç iş gününde yapılır?",
+      "answerable": true,
+      "answer": "Onaylanan iadelerde ücret, ürün depoya ulaştıktan sonra 5 iş günü içinde ödemenin yapıldığı karta iade edilir. Bankaya bağlı olarak tutarın hesaba yansıması 3 iş günü daha sürebilir.",
+      "sources": [
+        {
+          "doc_id": "iade-politikasi-v2",
+          "title": "İade ve Değişim Politikası",
+          "version": "2.0",
+          "effective_date": "2025-03-01",
+          "status": "yururlukte",
+          "chunk_id": "iade-politikasi-v2#6",
+          "section": "Para İadesi",
+          "excerpt": "Onaylanan iadelerde ücret, ürün depoya ulaştıktan sonra 5 iş günü içinde ödemenin yapıldığı karta iade edilir. Bankaya bağlı olarak tutarın hesaba yansıması 3 iş günü daha sürebilir.",
+          "score": 14.072
+        }
+      ],
+      "version_decisions": [
+        {
+          "family": "iade-politikasi",
+          "selected": {
+            "doc_id": "iade-politikasi-v2",
+            "title": "İade ve Değişim Politikası",
+            "version": "2.0",
+            "effective_date": "2025-03-01",
+            "status": "yururlukte"
+          },
+          "rejected": [
+            {
+              "doc_id": "iade-politikasi-v1",
+              "title": "İade ve Değişim Politikası",
+              "version": "1.0",
+              "effective_date": "2023-01-15",
+              "status": "yururlukten_kalkti",
+              "section": "Para İadesi",
+              "excerpt": "Onaylanan iadelerde ücret, ürün depoya ulaştıktan sonra 14 iş günü içinde ödemenin yapıldığı karta iade edilir."
+            }
+          ],
+          "rule": "1) yürürlükte olan sürüm, 2) en yeni yürürlük tarihi, 3) en yüksek sürüm numarası",
+          "explanation": "'İade ve Değişim Politikası' için birden fazla sürüm bulundu. v2.0 (yürürlük: 2025-03-01, yürürlükte) seçildi; v1.0 (2023-01-15, yürürlükten kalktı) yanıtta kullanılmadı."
+        }
+      ],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "iade-politikasi-v2#6",
+          "score": 14.072
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#5",
+          "score": 13.383
+        },
+        {
+          "chunk_id": "kargo-teslimat#1",
+          "score": 5.616
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#3",
+          "score": 4.2
+        },
+        {
+          "chunk_id": "destek-kanallari-v1#2",
+          "score": 3.995
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#2",
+          "score": 3.995
+        },
+        {
+          "chunk_id": "garanti-kosullari#4",
+          "score": 3.936
+        },
+        {
+          "chunk_id": "nova-plus-abonelik#3",
+          "score": 3.084
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#4",
+          "score": 2.402
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#2",
+          "score": 2.384
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true,
+      "çelişki_gösterildi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "C6",
+      "type": "celiskili",
+      "question": "Destek e-postalarına kaç günde yanıt veriliyor?",
+      "expected_answerable": true,
+      "expected_answer": "En geç 1 iş günü (v1'de 3).",
+      "expected_doc": "destek-kanallari-v2",
+      "expected_keywords": [
+        "1 iş günü",
+        "bir iş günü"
+      ],
+      "expected_rejected": [
+        "destek-kanallari-v1"
+      ],
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Destek e-postalarına kaç günde yanıt veriliyor?",
+      "answerable": true,
+      "answer": "destek@novaev.com.tr adresine gönderilen e-postalar en geç 1 iş günü içinde yanıtlanır.",
+      "sources": [
+        {
+          "doc_id": "destek-kanallari-v2",
+          "title": "Müşteri Destek Kanalları ve Çalışma Saatleri",
+          "version": "2.0",
+          "effective_date": "2024-09-01",
+          "status": "yururlukte",
+          "chunk_id": "destek-kanallari-v2#2",
+          "section": "E-posta Desteği",
+          "excerpt": "destek@novaev.com.tr adresine gönderilen e-postalar en geç 1 iş günü içinde yanıtlanır.",
+          "score": 9.046
+        }
+      ],
+      "version_decisions": [
+        {
+          "family": "destek-kanallari",
+          "selected": {
+            "doc_id": "destek-kanallari-v2",
+            "title": "Müşteri Destek Kanalları ve Çalışma Saatleri",
+            "version": "2.0",
+            "effective_date": "2024-09-01",
+            "status": "yururlukte"
+          },
+          "rejected": [
+            {
+              "doc_id": "destek-kanallari-v1",
+              "title": "Müşteri Destek Kanalları ve Çalışma Saatleri",
+              "version": "1.0",
+              "effective_date": "2022-06-01",
+              "status": "yururlukten_kalkti",
+              "section": "E-posta Desteği",
+              "excerpt": "destek@novaev.com.tr adresine gönderilen e-postalar en geç 3 iş günü içinde yanıtlanır."
+            }
+          ],
+          "rule": "1) yürürlükte olan sürüm, 2) en yeni yürürlük tarihi, 3) en yüksek sürüm numarası",
+          "explanation": "'Müşteri Destek Kanalları ve Çalışma Saatleri' için birden fazla sürüm bulundu. v2.0 (yürürlük: 2024-09-01, yürürlükte) seçildi; v1.0 (2022-06-01, yürürlükten kalktı) yanıtta kullanılmadı."
+        }
+      ],
+      "content_conflicts": [],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "destek-kanallari-v1#2",
+          "score": 9.046
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#2",
+          "score": 9.046
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#4",
+          "score": 5.713
+        },
+        {
+          "chunk_id": "kargo-teslimat#3",
+          "score": 4.72
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#3",
+          "score": 4.413
+        },
+        {
+          "chunk_id": "kargo-teslimat#1",
+          "score": 3.728
+        },
+        {
+          "chunk_id": "hesap-uyelik#2",
+          "score": 3.454
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#4",
+          "score": 2.848
+        },
+        {
+          "chunk_id": "destek-kanallari-v1#1",
+          "score": 2.74
+        },
+        {
+          "chunk_id": "destek-kanallari-v2#1",
+          "score": 2.679
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true,
+      "çelişki_gösterildi": true
+    },
+    "passed": true
+  },
+  {
+    "case": {
+      "id": "C7",
+      "type": "celiskili",
+      "question": "Ürün iadesinde kargo ücretini kim ödüyor?",
+      "expected_answerable": true,
+      "expected_answer": "HızlıKargo ile ücretsiz; iade v1 ve 2024 tarihli Kargo dokümanındaki 'müşteriye aittir' ifadesi eski.",
+      "expected_doc": "iade-politikasi-v2",
+      "expected_keywords": [
+        "ücretsiz"
+      ],
+      "expected_rejected": [
+        "iade-politikasi-v1",
+        "kargo-teslimat"
+      ],
+      "forbidden_keywords": null
+    },
+    "response": {
+      "question": "Ürün iadesinde kargo ücretini kim ödüyor?",
+      "answerable": true,
+      "answer": "Anlaşmalı kargo firması HızlıKargo ile yapılan iade gönderimleri ücretsizdir, yani kargo ücretini müşteri ödemez. Müşteri iadeyi farklı bir kargo firmasıyla gönderirse kargo ücreti müşteriye aittir.",
+      "sources": [
+        {
+          "doc_id": "iade-politikasi-v2",
+          "title": "İade ve Değişim Politikası",
+          "version": "2.0",
+          "effective_date": "2025-03-01",
+          "status": "yururlukte",
+          "chunk_id": "iade-politikasi-v2#3",
+          "section": "İade Kargo Ücreti",
+          "excerpt": "Anlaşmalı kargo firması (HızlıKargo) ile yapılan iade gönderimleri ücretsizdir. Müşteri farklı bir kargo firması kullanırsa kargo ücreti müşteriye aittir.",
+          "score": 10.11
+        }
+      ],
+      "version_decisions": [
+        {
+          "family": "iade-politikasi",
+          "selected": {
+            "doc_id": "iade-politikasi-v2",
+            "title": "İade ve Değişim Politikası",
+            "version": "2.0",
+            "effective_date": "2025-03-01",
+            "status": "yururlukte"
+          },
+          "rejected": [
+            {
+              "doc_id": "iade-politikasi-v1",
+              "title": "İade ve Değişim Politikası",
+              "version": "1.0",
+              "effective_date": "2023-01-15",
+              "status": "yururlukten_kalkti",
+              "section": "İade Kargo Ücreti",
+              "excerpt": "İade gönderimlerinde kargo ücreti müşteriye aittir. Ürün hatalı veya hasarlı gönderildiyse kargo ücreti şirket tarafından karşılanır."
+            }
+          ],
+          "rule": "1) yürürlükte olan sürüm, 2) en yeni yürürlük tarihi, 3) en yüksek sürüm numarası",
+          "explanation": "'İade ve Değişim Politikası' için birden fazla sürüm bulundu. v2.0 (yürürlük: 2025-03-01, yürürlükte) seçildi; v1.0 (2023-01-15, yürürlükten kalktı) yanıtta kullanılmadı."
+        }
+      ],
+      "content_conflicts": [
+        {
+          "topic": "İade gönderimlerinde kargo ücreti",
+          "chosen": {
+            "doc_id": "iade-politikasi-v2",
+            "title": "İade ve Değişim Politikası",
+            "version": "2.0",
+            "effective_date": "2025-03-01",
+            "status": "yururlukte"
+          },
+          "rejected": {
+            "doc_id": "kargo-teslimat",
+            "title": "Kargo ve Teslimat Bilgileri",
+            "version": "1.0",
+            "effective_date": "2024-02-12",
+            "status": "yururlukte"
+          },
+          "reason": "Her iki kaynak da yürürlükte; ancak İade ve Değişim Politikası v2.0'ın yürürlük tarihi (2025-03-01), Kargo ve Teslimat Bilgileri'nin yürürlük tarihinden (2024-02-12) daha yenidir. Ayrıca kargo-teslimat#4 iade ayrıntıları için bu politikaya yönlendirmektedir."
+        }
+      ],
+      "mode": "llm",
+      "model": "claude-opus-5-5",
+      "candidates": [
+        {
+          "chunk_id": "iade-politikasi-v1#3",
+          "score": 10.11
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#3",
+          "score": 8.706
+        },
+        {
+          "chunk_id": "kargo-teslimat#4",
+          "score": 6.957
+        },
+        {
+          "chunk_id": "kargo-teslimat#2",
+          "score": 6.619
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#5",
+          "score": 5.505
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#4",
+          "score": 5.479
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#6",
+          "score": 5.127
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#5",
+          "score": 4.813
+        },
+        {
+          "chunk_id": "iade-politikasi-v2#2",
+          "score": 4.422
+        },
+        {
+          "chunk_id": "iade-politikasi-v1#2",
+          "score": 3.79
+        }
+      ],
+      "warnings": []
+    },
+    "checks": {
+      "yanıtlanabilirlik": true,
+      "doğru_kaynak": true,
+      "eski_sürüm_kullanılmadı": true,
+      "anahtar_bilgi": true,
+      "çelişki_gösterildi": true
+    },
+    "passed": true
+  }
+]
