@@ -67,3 +67,17 @@ public record SearchResponse(string Query, IReadOnlyList<SourceRef> Results);
 public record DocumentInfo(
     string DocId, string Title, string Version, DateOnly EffectiveDate, string Status,
     string Family, string? Supersedes, IReadOnlyList<string> Sections);
+
+// FastAPI LLM servisiyle (llm-service/) paylaşılan sözleşme.
+
+public record LlmSource(
+    string Id, string Title, string Version, DateOnly EffectiveDate, string Status, string Section, string Text);
+
+public record GenerateRequest(string Question, IReadOnlyList<LlmSource> Sources);
+
+public record LlmConflict(string Topic, string ChosenSourceId, string RejectedSourceId, string Reason);
+
+public record GenerateResponse(
+    bool Answerable, string Answer, IReadOnlyList<string> UsedSourceIds, IReadOnlyList<LlmConflict> Conflicts, string Model);
+
+public record LlmHealth(string Status, bool LlmAvailable, string Model);

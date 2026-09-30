@@ -3,17 +3,31 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using BilgiAsistani.Core;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BilgiAsistani.Tests;
 
 public class ApiTests
 {
-    private static HttpClient Create() => new WebApplicationFactory<Program>().CreateClient();
+    private static (HttpClient Client, FakeLlmClient Llm) Create()
+    {
+        var llm = new FakeLlmClient
+        {
+            Respond = req => new GenerateResponse(true, "30 gün içinde iade edebilirsiniz.", [req.Sources[0].Id], [], "fake-model"),
+        };
+        var factory = new WebApplicationFactory<Program>().WithWebHostBuilder(b =>
+        {
+            b.UseSetting("Assistant:AnswerMode", "llm");
+            b.ConfigureTestServices(s => s.AddSingleton<ILlmClient>(llm));
+        });
+        return (factory.CreateClient(), llm);
+    }
 
     [Fact]
     public async Task Ask_ByDefault_ReturnsSingleAnswerWithSourcesAndNotes()
     {
-        var client = Create();
+        var (client, _) = Create();
 
         var response = await client.PostAsJsonAsync("/api/ask", new { question = "Ürünü kaç gün içinde iade edebilirim?" });
 
@@ -51,7 +65,7 @@ public class ApiTests
     [Fact]
     public async Task Ask_WithDetails_ReturnsSnakeCaseResponseWithSourcesAndVersionDecisions()
     {
-        var client = Create();
+        var (client, _) = Create();
 
         var response = await client.PostAsJsonAsync("/api/ask?details=true", new { question = "Ürünü kaç gün içinde iade edebilirim?" });
 
@@ -67,13 +81,14 @@ public class ApiTests
     [Fact]
     public async Task Ask_SameQuestionTwice_SecondIsServedFromCache()
     {
-        var client = Create();
+        var (client, llm) = Create();
 
         var first = await client.PostAsJsonAsync("/api/ask", new { question = "İade süresi nedir?" });
         var second = await client.PostAsJsonAsync("/api/ask", new { question = "  iade   SÜRESİ nedir? " });
 
         Assert.Equal("MISS", first.Headers.GetValues("X-Cache").Single());
         Assert.Equal("HIT", second.Headers.GetValues("X-Cache").Single());
+        Assert.Single(llm.Requests);
     }
 
     [Theory]
@@ -81,17 +96,18 @@ public class ApiTests
     [InlineData("  a ")]
     public async Task Ask_InvalidQuestion_Returns400(string question)
     {
-        var client = Create();
+        var (client, llm) = Create();
 
         var response = await client.PostAsJsonAsync("/api/ask", new { question });
 
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        Assert.Empty(llm.Requests);
     }
 
     [Fact]
     public async Task Search_And_Documents_Work()
     {
-        var client = Create();
+        var (client, _) = Create();
 
         var search = await client.GetFromJsonAsync<JsonElement>("/api/search?q=garanti%20s%C3%BCresi&topK=2");
         var docs = await client.GetFromJsonAsync<JsonElement>("/api/documents");
@@ -119,7 +135,7 @@ public class ApiTests
     [Fact]
     public async Task OpenApi_DescribesAskEndpointWithExampleQuestion()
     {
-        var client = Create();
+        var (client, _) = Create();
 
         var doc = await client.GetFromJsonAsync<JsonElement>("/openapi/v1.json");
 
@@ -133,13 +149,13 @@ public class ApiTests
     }
 
     [Fact]
-    public async Task Health_ReportsCorpus()
+    public async Task Health_ReportsCorpusAndLlmService()
     {
-        var client = Create();
+        var (client, _) = Create();
 
         var health = await client.GetFromJsonAsync<JsonElement>("/health");
 
         Assert.Equal(10, health.GetProperty("documents").GetInt32());
-        Assert.Equal(42, health.GetProperty("chunks").GetInt32());
+        Assert.True(health.GetProperty("llm_service").GetProperty("llm_available").GetBoolean());
     }
 }

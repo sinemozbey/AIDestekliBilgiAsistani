@@ -28,7 +28,7 @@ builder.Services.AddOpenApi(o =>
         doc.Tags = new HashSet<OpenApiTag>
         {
             new() { Name = "Soru-yanıt", Description = "Soru sorma, doküman arama ve doküman listesi." },
-            new() { Name = "Sistem", Description = "Servisin durumu." },
+            new() { Name = "Sistem", Description = "Servisin ve LLM bağlantısının durumu." },
         };
         return Task.CompletedTask;
     });
@@ -51,8 +51,8 @@ app.MapGet("/", () => Results.Redirect("/scalar/")).ExcludeFromDescription();
 
 // İndeksi ilk istekte değil, açılışta kur; doküman hataları hemen görünsün.
 var pipeline = app.Services.GetRequiredService<QaPipeline>();
-app.Logger.LogInformation("{Docs} doküman, {Chunks} bölüm yüklendi.",
-    pipeline.Corpus.Documents.Count, pipeline.Corpus.Chunks.Count);
+app.Logger.LogInformation("{Docs} doküman, {Chunks} bölüm yüklendi. Yanıt modu: {Mode}",
+    pipeline.Corpus.Documents.Count, pipeline.Corpus.Chunks.Count, pipeline.Options.AnswerMode);
 
 var api = app.MapGroup("/api").WithTags("Soru-yanıt");
 var tr = CultureInfo.GetCultureInfo("tr-TR");
@@ -117,15 +117,21 @@ api.MapGet("/documents", (QaPipeline qa) => Results.Ok(qa.Documents()))
 .WithSummary("Dokümanları listele")
 .WithDescription("Bilgi tabanındaki dokümanları; sürüm, yürürlük tarihi, durum ve bölüm başlıklarıyla listeler.");
 
-app.MapGet("/health", (QaPipeline qa) => Results.Ok(new
+app.MapGet("/health", async (QaPipeline qa, CancellationToken ct) =>
 {
-    status = "ok",
-    documents = qa.Corpus.Documents.Count,
-    chunks = qa.Corpus.Chunks.Count,
-}))
+    var llm = await qa.GetLlmHealthAsync(ct);
+    return Results.Ok(new
+    {
+        status = "ok",
+        answer_mode = qa.Options.AnswerMode,
+        documents = qa.Corpus.Documents.Count,
+        chunks = qa.Corpus.Chunks.Count,
+        llm_service = llm is null ? (object)"ulaşılamıyor" : llm,
+    });
+})
 .WithTags("Sistem")
 .WithSummary("Sistem durumu")
-.WithDescription("Yüklenen doküman ve bölüm sayısını gösterir.");
+.WithDescription("Yüklenen doküman ve bölüm sayısını, yanıt modunu ve LLM servisinin durumunu gösterir.");
 
 app.Run();
 
