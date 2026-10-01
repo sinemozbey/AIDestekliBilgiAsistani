@@ -6,6 +6,19 @@ Kurgu şirket **Nova Ev Teknolojileri**'nin müşteri destek ekibi için gelişt
 - Dokümanlarda bilgi yoksa sistem yanıt uydurmaz, **"bilgi bulunamadı"** der.
 - Aynı prosedürün eski ve güncel sürümleri çeliştiğinde **hangi sürümün neden seçildiği** yanıtta açıklanır.
 
+### Nasıl çalışır?
+
+Kararları kod verir, yanıt metnini Claude yazar:
+
+1. **Arama:** Soru, Türkçeye uyarlanmış BM25 ile doküman bölümlerinde aranır.
+2. **"Bilgi yok" kapısı:** Soru dokümanlarla ilgisizse Claude çağrılmadan "bilgi bulunamadı" yanıtı döner.
+3. **Sürüm seçimi:** Aynı prosedürün birden fazla sürümü bulunursa güncel olan meta veriye göre seçilir; eski sürüm Claude'a hiç gönderilmez.
+4. **Yanıt üretimi:** Seçilen bölümler FastAPI servisi üzerinden Claude'a gönderilir ve şemaya uygun, yapılandırılmış bir yanıt alınır.
+5. **Doğrulama:** .NET, Claude'un gösterdiği kaynakları gönderilen bölümlerle karşılaştırır; tarih ve sürüm bilgilerini doküman meta verisinden yazar.
+6. **Yedek mod:** Claude'a ulaşılamazsa sistem çökmez; yanıtı doğrudan doküman metninden seçer ve bunu belirtir.
+
+**Değerlendirme:** 17 soruluk sette 17/17, ayarlamadan sonra yazılmış 11 soruluk dayanıklılık setinde 11/11 (yedek modda 16/17 ve 4/11, yanlış yanıt olmadan). Ayrıntılar: [Yanıt üretim akışı](#yanıt-üretim-akışı), [Değerlendirme](#değerlendirme).
+
 ## Mimari
 
 İş mantığının tamamı **.NET 10 (C#, LTS)** tarafındadır. **FastAPI (Python)** servisi yalnızca Claude'u çağıran ince bir katmandır.
