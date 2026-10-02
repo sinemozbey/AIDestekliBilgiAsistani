@@ -5,6 +5,8 @@ from html import escape
 import anthropic
 from pydantic import BaseModel, Field
 
+# Sürüm seçimi .NET'te yapılır; buraya yalnızca güncel sürümlerin bölümleri gelir. Claude'un çözdüğü
+# çelişkiler, meta veride birbirine bağlı olmayan farklı dokümanlar arasındaki çelişkilerdir.
 SYSTEM_PROMPT = """Sen Nova Ev Teknolojileri müşteri destek ekibine yardım eden bir bilgi asistanısın.
 Destek temsilcilerinin sorularını YALNIZCA sana verilen <source> etiketli doküman bölümlerine dayanarak Türkçe yanıtlarsın.
 
@@ -50,6 +52,10 @@ class LLMError(RuntimeError):
 
 
 def format_sources(sources: list[Source]) -> str:
+    """Bölümleri meta verileriyle <source> etiketlerine koyar.
+
+    Tüm değerler kaçışlanır: doküman metni sahte etiketlerle yapıyı bozup talimat enjekte edemez.
+    """
     return "\n".join(
         f'<source id="{escape(s.id)}" doc="{escape(s.title)}" version="{escape(s.version)}" '
         f'effective_date="{s.effective_date}" status="{escape(s.status)}" section="{escape(s.section)}">\n'
@@ -82,6 +88,10 @@ class ClaudeAnswerer:
             raise LLMError(f"Anthropic API hatası ({e.status_code})", transient=e.status_code >= 500) from e
 
     def answer(self, question: str, sources: list[Source]) -> LLMAnswer:
+        """Kaynakları ve soruyu Claude'a gönderir; serbest metin yerine LLMAnswer şemasına uyan yanıt alır.
+
+        Anthropic hataları, reddetme ve şemaya uymayan yanıtlar LLMError'a çevrilir; .NET bu durumda yedek moda geçer.
+        """
         user = f"<sources>\n{format_sources(sources)}\n</sources>\n\n<question>{escape(question)}</question>"
         try:
             response = self.client.beta.messages.parse(

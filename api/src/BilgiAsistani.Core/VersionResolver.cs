@@ -38,6 +38,11 @@ public static class VersionResolver
     public static Document CurrentVersion(string family, IEnumerable<Document> docs) =>
         docs.Where(d => d.Family == family).MaxBy(d => d, VersionComparer.Instance)!;
 
+    /// <summary>
+    /// Arama sonuçlarındaki eski sürüm bölümlerini eler. Her aile için güncel sürüm seçilir; güncel sürüme ait
+    /// bölümler kalır, eski sürüme ait bölümün yerine aynı soru güncel sürümde aranarak bulunan bölüm konur.
+    /// Sonunda tekrarlar temizlenir ve her aile için kararın açıklaması üretilir.
+    /// </summary>
     public static (List<Hit> Hits, List<VersionDecision> Decisions) Resolve(
         IReadOnlyList<Hit> hits, string query, Bm25Index index, IReadOnlyList<Document> docs)
     {
@@ -63,7 +68,8 @@ public static class VersionResolver
             rejected.TryAdd(doc.DocId, new RejectedVersion(
                 doc.DocId, doc.Title, doc.Version, doc.EffectiveDate, doc.Status, hit.Chunk.Section, hit.Chunk.Text));
 
-            // Eski sürümün yerine güncel sürümdeki en ilgili bölümü getir.
+            // Eski sürümün yerine güncel sürümdeki en ilgili bölümü getir. Yeni bölüm, sıralamada geri
+            // düşmemesi için eski bölümün skorunu devralır (eski bölüm daha kısa olduğu için öne çıkmış olabilir).
             var replacement = index.Search(query, topK: 1, docId: winner.DocId);
             if (replacement.Count > 0)
                 resolved.Add(replacement[0] with { Score = Math.Max(replacement[0].Score, hit.Score) });

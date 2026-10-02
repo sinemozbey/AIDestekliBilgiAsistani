@@ -55,6 +55,13 @@ public class QaPipeline
         _ => (await GetLlmHealthAsync(ct))?.LlmAvailable ?? false,
     };
 
+    /// <summary>
+    /// Bir soruyu uçtan uca yanıtlar:
+    /// 1) LLM kullanılabilir mi (auto modda sağlık durumu 30 sn önbellekte),
+    /// 2) BM25 araması, 3) skor eşiğinin altındaysa LLM çağrılmadan "bilgi yok",
+    /// 4) sürüm çözümleme ve en iyi TopK bölüm, 5) LLM ile yanıt ve doğrulama,
+    /// 6) LLM yoksa veya hata verirse çıkarımsal yedek mod.
+    /// </summary>
     public async Task<AskResponse> AskAsync(string question, CancellationToken ct = default)
     {
         var useLlm = await UseLlmAsync(ct);
@@ -66,6 +73,7 @@ public class QaPipeline
 
         AskResponse NoInfo(string m) => new(question, false, NoInfoAnswer, [], [], [], m, null, candidates, []);
 
+        // Soru dokümanlarla ilgisiz: LLM'e gitmeden yanıtla.
         if (rawHits.Count == 0 || rawHits[0].Score < _opts.MinScore)
             return NoInfo(mode);
 
@@ -84,6 +92,7 @@ public class QaPipeline
             }
             catch (LlmServiceException e)
             {
+                // Hata kullanıcıya uyarı olarak iletilir ve akış aşağıdaki çıkarımsal moda devam eder.
                 _log.LogWarning(e, "LLM kullanılamadı, çıkarımsal moda geçiliyor");
                 warnings.Add($"LLM kullanılamadı, çıkarımsal moda geçildi: {e.Message}");
                 mode = AnswerModes.ExtractiveFallback;
@@ -91,6 +100,7 @@ public class QaPipeline
         }
 
         var ext = ExtractiveAnswerer.Answer(question, hits, _opts.MinCoverage);
+        // Yalnızca yanıtta kullanılan dokümanların sürüm kararları gösterilir.
         var usedFamilies = ext.Used.Select(h => h.Chunk.Doc.Family).ToHashSet();
         return new AskResponse(
             question, ext.Answerable, ext.Answerable ? ext.Answer : NoInfoAnswer,
@@ -125,6 +135,10 @@ public class QaPipeline
             .ToList();
     }
 
+    /// <summary>
+    /// Bölümleri LLM servisine gönderir ve yanıtı doğrular: listede olmayan kaynak kimlikleri atılır,
+    /// geçerli kaynak gösterilmeyen yanıt cevapsız sayılır, çelişki kayıtlarının tarih ve sürümü meta veriden yazılır.
+    /// </summary>
     private async Task<AskResponse> AskLlmAsync(
         string question, IReadOnlyList<Hit> hits, List<VersionDecision> decisions, List<Candidate> candidates, CancellationToken ct)
     {
@@ -145,6 +159,7 @@ public class QaPipeline
             .Select(x => new ContentConflict(x.c.Topic, x.Chosen.ToRef(), x.Rejected.ToRef(), x.c.Reason))
             .ToList();
 
+        // LLM "yanıtlanabilir" dese bile dayandığı geçerli bir kaynak yoksa yanıt kabul edilmez.
         var answerable = result.Answerable && used.Count > 0;
         var usedFamilies = used.Select(h => h.Chunk.Doc.Family).ToHashSet();
         return new AskResponse(
